@@ -41,7 +41,6 @@ t.test(group1, group2, Var.equal=F, alt='two.sided')
 ### 양측검정 : alt = 'two.sided'
 t.test(group1, group2, Var.equal=T, alt='less')
 
-
 ### 단측검정 : alt= 'less'
 
 
