@@ -22,7 +22,7 @@ group2 <- group$'2'$score
 
 ## 등분산 검정 : leveneTest
 library(car)
-leveneTest(score~group, data=data.src)
+leveneTest(score~group, data=data.src, center=mean)
 
 ## 등분산 : Var.equal = T
 ### 양측검정 : alt = 'two.sided'
