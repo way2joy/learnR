@@ -18,6 +18,17 @@ lines(density(group$'2'$score), lty=2)
 
 # t-test([rsc](http://blog.naver.com/PostView.nhn?blogId=kingmbc2&logNo=30105279908&parentCategoryNo=47&viewDate=&currentPage=1&listtype=0))
 
+## 등분산 : Var.equal = T
+
+### 양측검정 : alt = 'two.sided'
+
+### 단측검정 : alt = 'less'
+
+## 등분산 아님 : Var.equal = F
+
+### 양측검정 : alt = 'two.sided'
+
+### 단측검정 : alt= 'less'
 
 
 # Shapiro Wilk normality test
