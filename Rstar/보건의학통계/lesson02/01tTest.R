@@ -15,18 +15,27 @@ group <- split(data.src, data.src$group)
 # plot
 plot(density(group$'1'$score))
 lines(density(group$'2'$score), lty=2)
+group1 <- group$'1'$score
+group2 <- group$'2'$score
 
 # t-test([rsc](http://blog.naver.com/PostView.nhn?blogId=kingmbc2&logNo=30105279908&parentCategoryNo=47&viewDate=&currentPage=1&listtype=0))
 
 ## 등분산 : Var.equal = T
 
 ### 양측검정 : alt = 'two.sided'
+t.test(group1, group2, Var.equal=T, alt='two.sided')
 
 ### 단측검정 : alt = 'less'
+t.test(group1, group2, Var.equal=T, alt='less')
+
 
 ## 등분산 아님 : Var.equal = F
+t.test(group1, group2, Var.equal=F, alt='two.sided')
+
 
 ### 양측검정 : alt = 'two.sided'
+t.test(group1, group2, Var.equal=T, alt='less')
+
 
 ### 단측검정 : alt= 'less'
 
