@@ -25,7 +25,9 @@ group2 <- group$'2'$score
 library(car)
 leveneTest(score~group, data=data.src, center=mean)
 # p=0.6461 > 0.05 이므로 등분산이 아니라고 할 수 없다.
+# 따라서 등분산 t-test를 사용한다.
 ```
+
 ## 등분산 : Var.equal = T
 ### 양측검정 : alt = 'two.sided'
 t.test(group1, group2, Var.equal=T, alt='two.sided')
