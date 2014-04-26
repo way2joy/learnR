@@ -16,6 +16,10 @@ group <- split(data.src, data.src$group)
 plot(density(group$'1'$score))
 lines(density(group$'2'$score), lty=2)
 
+# t-test([rsc](http://blog.naver.com/PostView.nhn?blogId=kingmbc2&logNo=30105279908&parentCategoryNo=47&viewDate=&currentPage=1&listtype=0))
+
+
+
 # Shapiro Wilk normality test
 # install.packages("nortest")
 library(nortest)
