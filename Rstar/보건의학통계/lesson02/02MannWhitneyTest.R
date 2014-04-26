@@ -10,8 +10,10 @@ data.B <- c(23, 16, 28, 23)
 [src](http://dogmas.tistory.com/182)
 
 ### 관련 데이터 직접 사용
+```
 wilcox.test(data.A, data.B)
-
+# p=0.06506 > 0.05 이므로 
+```
 ### formula 이용
 #### data 만들기
 tmp.A <- merge("A", data.A)
