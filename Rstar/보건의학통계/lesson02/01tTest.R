@@ -28,10 +28,8 @@ t.test(group1, group2, Var.equal=T, alt='two.sided')
 ### 단측검정 : alt = 'less'
 t.test(group1, group2, Var.equal=T, alt='less')
 
-
 ## 등분산 아님 : Var.equal = F
 t.test(group1, group2, Var.equal=F, alt='two.sided')
-
 
 ### 양측검정 : alt = 'two.sided'
 t.test(group1, group2, Var.equal=T, alt='less')
