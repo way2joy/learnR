@@ -25,7 +25,6 @@ library(car)
 leveneTest(score~group, data=data.src)
 
 ## 등분산 : Var.equal = T
-
 ### 양측검정 : alt = 'two.sided'
 t.test(group1, group2, Var.equal=T, alt='two.sided')
 
