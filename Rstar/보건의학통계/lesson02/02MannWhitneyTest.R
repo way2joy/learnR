@@ -9,11 +9,15 @@ data.B <- c(23, 16, 28, 23)
 [src](http://www.r-tutor.com/elementary-statistics/non-parametric-methods/mann-whitney-wilcoxon-test)
 [src](http://dogmas.tistory.com/182)
 
-## data 만들기
+
+
+### 관련 데이터 직접 사용
+wilcox.test(data.A, data.B)
+
+### formula 이용
+#### data 만들기
 tmp.A <- merge("A", data.A)
 tmp.B <- merge("B", data.B)
 group <- as.data.frame(rbind(tmp.A, tmp.B))
 group
-
-wilcox.test(data.A, data.B)
 wilcox.test(y~x, data=group) 
