@@ -14,10 +14,13 @@ data.B <- c(23, 16, 28, 23)
 wilcox.test(data.A, data.B)
 # p=0.06506 > 0.05 이므로 두 집단이 차이가 있다고 하기 힘들다.
 ```
+
 ### formula 이용
-#### data 만들기
+```
 tmp.A <- merge("A", data.A)
 tmp.B <- merge("B", data.B)
 group <- as.data.frame(rbind(tmp.A, tmp.B))
 group
 wilcox.test(y~x, data=group) 
+# 결과값은 위와 같다. 
+```
