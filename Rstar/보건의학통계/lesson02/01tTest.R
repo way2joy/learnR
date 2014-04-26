@@ -12,6 +12,7 @@ data.src$group <- as.factor(data.src$group)
 
 group <- split(data.src, data.src$group)
 
+# plot
 plot(density(group$'1'$score))
 lines(density(group$'2'$score), lty=2)
 
