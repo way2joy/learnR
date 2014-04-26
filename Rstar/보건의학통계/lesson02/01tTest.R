@@ -1,6 +1,6 @@
 # <그림으로 이해하는 닥터 배의 술술 보건의학통계> p.61
 
-data.src <- read.csv("Rstar\\보건의학통계\\lesson01이여덟가지만은\\1_normality.csv", header = T, sep = ",")
+data.src <- read.csv("Rstar/보건의학통계/lesson02/01tTest.csv", header = T, sep = ",")
 
 # 확인
 head(data.src)
@@ -12,7 +12,8 @@ data.src$group <- as.factor(data.src$group)
 
 group <- split(data.src, data.src$group)
 
-group$'1'
+plot(density(group$'1'$score))
+lines(density(group$'2'$score), lty=2)
 
 # Shapiro Wilk normality test
 # install.packages("nortest")
