@@ -1,4 +1,4 @@
-# <그림으로 이해하는 닥터 배의 술술 보건의학통계> p.47
+# <그림으로 이해하는 닥터 배의 술술 보건의학통계> p.61
 
 data.src <- read.csv("Rstar\\보건의학통계\\lesson01이여덟가지만은\\1_normality.csv", header = T, sep = ",")
 
