@@ -15,5 +15,5 @@ tmp.B <- merge("B", data.B)
 group <- as.data.frame(rbind(tmp.A, tmp.B))
 group
 
-wilcox.test(y~x, data=group) 
 wilcox.test(data.A, data.B)
+wilcox.test(y~x, data=group) 
