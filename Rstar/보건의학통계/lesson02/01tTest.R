@@ -45,29 +45,3 @@ t.test(group1, group2, Var.equal=T, alt='less')
 ### 단측검정 : alt= 'less'
 
 
-# Shapiro Wilk normality test
-# install.packages("nortest")
-library(nortest)
-shapiro.test(group$'1'$score)   # p-value = 0.1905 > 0.05 ... 정규분포 따른다.
-shapiro.test(group$'2'$score)   # p-value = 0.3848 > 0.05 ... 정규분포 따른다.
-
-# plot
-boxplot(data.src)
-
-hist(group$'1'$score, freq=FALSE)
-lines(density(group$'1'$score))
-rug(jitter(group$'1'$score))
-
-hist(group$'2'$score, freq=FALSE)
-lines(density(group$'2'$score))
-rug(jitter(group$'2'$score))
-
-# http://jinmedi.tistory.com/339
-# 두 집단 이상일 때 정규성 검정을 해보아요
-# output <- lm(종속변수~독립변수, data=오브젝트이름)
-# shapiro.test(resid(output))
-
-output <- lm(score~group, data = data.src)
-shapiro.test(resid(output))    # p-value = 0.1066 > 0.05 ... 정규분포 따른다.
-
-
