@@ -9,8 +9,6 @@ data.B <- c(23, 16, 28, 23)
 [src](http://www.r-tutor.com/elementary-statistics/non-parametric-methods/mann-whitney-wilcoxon-test)
 [src](http://dogmas.tistory.com/182)
 
-
-
 ### 관련 데이터 직접 사용
 wilcox.test(data.A, data.B)
 
