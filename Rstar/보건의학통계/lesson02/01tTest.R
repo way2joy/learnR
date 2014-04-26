@@ -21,6 +21,7 @@ group2 <- group$'2'$score
 # t-test([src](http://blog.naver.com/PostView.nhn?blogId=kingmbc2&logNo=30105279908&parentCategoryNo=47&viewDate=&currentPage=1&listtype=0))
 
 ## 등분산 검정 : levene.test
+library(car)
 levene.test(score~group, data=data.src)
 
 ## 등분산 : Var.equal = T
