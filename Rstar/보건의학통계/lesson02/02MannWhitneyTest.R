@@ -6,6 +6,7 @@ data.A <- c(10, 12, 15, 22,21)
 data.B <- c(23, 16, 28, 23)
 
 # Mann-Whitney-Wilcoxon Test([src](http://www.r-tutor.com/elementary-statistics/non-parametric-methods/mann-whitney-wilcoxon-test))
+#[src](http://dogmas.tistory.com/182)
 
 ## data 만들기
 tmp.A <- merge("A", data.A)
