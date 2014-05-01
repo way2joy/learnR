@@ -15,6 +15,8 @@ library(nortest)
 shapiro.test(data$pre)  # p=0.5652 > 0.05 정규성 가진다.
 shapiro.test(data$post) # p=0.8053 > 0.05 정규성 가진다.
 shapiro.test(data$deviation) # p=0.2466 > 0.05 정규성 가진다.
-class(data$post)
+
+## 대응표본 t-test
 
 t.test()
+
