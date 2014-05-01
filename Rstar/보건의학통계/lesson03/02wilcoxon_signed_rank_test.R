@@ -7,3 +7,5 @@ setwd("~/SparkleShare/learnR/Rstar/보건의학통계/lesson03")
 data <- read.csv("3_wilcoxon_signed_rank_test.csv", header=T)
 
 head(data)
+library('car')
+wilcox.test(data$pre, data$post, paired=T)
