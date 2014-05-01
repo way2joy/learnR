@@ -18,5 +18,5 @@ shapiro.test(data$deviation) # p=0.2466 > 0.05 정규성 가진다.
 
 ## 대응표본 t-test
 
-t.test()
+t.test(data$pre, data$post, paired=T)  # p=6.327e-10 < 0.05  평균값이 같다고 보기 '매우' 어렵다.
 
