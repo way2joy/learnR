@@ -15,6 +15,8 @@ shapiro.test(data$post) # p=0.7282 > 0.05 정규성 가진다.
 plot(density(data$pre))
 lines(density(data$post), lty=2)
 
+boxplot(data$pre, data$post, col="yellow3")
+
 ## wilcoxon signed rank test 값을 구해보자
 library('car')
 wilcox.test(data$pre, data$post, paired=T) # p=0.2328 > 0.5
