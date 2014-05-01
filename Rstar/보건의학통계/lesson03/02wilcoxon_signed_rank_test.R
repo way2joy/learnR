@@ -15,17 +15,6 @@ shapiro.test(data$post) # p=0.7282 > 0.05 정규성 가진다.
 plot(density(data$pre))
 lines(density(data$post), lty=2)
 
-## ## 정규성 검정
-library(nortest)
-shapiro.test(data$pre)  # p=0.5652 > 0.05 정규성 가진다.
-shapiro.test(data$post) # p=0.8053 > 0.05 정규성 가진다.
-shapiro.test(data$deviation) # p=0.2466 > 0.05 정규성 가진다.
-
-## 대응표본 t-test
-
-### 그림으로 살펴보자.
-plot(density(data$pre))
-lines(density(data$post), lty=2)
- 값을 구해보자
+## wilcoxon signed rank test 값을 구해보자
 library('car')
 wilcox.test(data$pre, data$post, paired=T) # p=0.2328 > 0.5
