@@ -8,4 +8,4 @@ data <- read.csv("3_wilcoxon_signed_rank_test.csv", header=T)
 
 head(data)
 library('car')
-wilcox.test(data$pre, data$post, paired=T)
+wilcox.test(data$pre, data$post, paired=T) # p=0.2328 < 0.05
