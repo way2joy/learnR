@@ -20,4 +20,3 @@ library('car')
 wilcox.test(data$pre, data$post, paired=T) # p=0.2328 > 0.5
 # 다음과 같이 해도 값이 같다.
 wilcox.test(data$post-data$pre)
-# 위 책에서는 다음과 같이 했다. 
