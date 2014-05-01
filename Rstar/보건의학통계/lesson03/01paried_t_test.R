@@ -22,6 +22,9 @@ shapiro.test(data$deviation) # p=0.2466 > 0.05 정규성 가진다.
 plot(density(data$pre))
 lines(density(data$post), lty=2)
 
+boxplot(data$pre, data$post, col="yellow3")
+segments(1, data$pre, 2, data$post, col=2, lwd=0.4)
+
 ### t-test 값을 구해보자.
 t.test(data$pre, data$post, paired=T)  # p=6.327e-10 < 0.05  평균값이 같다고 보기 '매우' 어렵다.
 
