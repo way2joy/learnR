@@ -24,6 +24,12 @@ hist(data$pre)
 hist(data$post)
 
 #### density line
+hist(data$pre, freq=F)
+lines(density(data$pre))
+
+hist(data$post, freq=F)
+lines(density(data$post))
+
 plot(density(data$pre))
 lines(density(data$post), lty=2)
 
