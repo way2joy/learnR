@@ -19,12 +19,15 @@ shapiro.test(data$deviation) # p=0.2466 > 0.05 정규성 가진다.
 ## 대응표본 t-test
 
 ### 그림으로 살펴보자.
+#### historgram
 hist(data$pre)
 hist(data$post)
 
+#### density line
 plot(density(data$pre))
 lines(density(data$post), lty=2)
 
+#### boxplot
 boxplot(data$pre, data$post, col="yellow3")
 segments(1, data$pre, 2, data$post, col=2, lwd=0.4)
 
