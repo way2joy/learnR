@@ -19,6 +19,9 @@ shapiro.test(data$deviation) # p=0.2466 > 0.05 정규성 가진다.
 ## 대응표본 t-test
 
 ### 그림으로 살펴보자.
+hist(data$pre)
+hist(data$post)
+
 plot(density(data$pre))
 lines(density(data$post), lty=2)
 
