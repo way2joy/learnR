@@ -18,3 +18,5 @@ lines(density(data$post), lty=2)
 ## wilcoxon signed rank test 값을 구해보자
 library('car')
 wilcox.test(data$pre, data$post, paired=T) # p=0.2328 > 0.5
+# 다음과 같이 해도 값이 같다.
+wilcox.test(data$post-data$pre)
