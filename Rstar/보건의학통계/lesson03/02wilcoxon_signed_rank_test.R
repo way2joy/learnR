@@ -16,6 +16,7 @@ plot(density(data$pre))
 lines(density(data$post), lty=2)
 
 boxplot(data$pre, data$post, col="yellow3")
+segments(1, data$pre, 2, data$post, col=1, lwd=0.25)
 
 ## wilcoxon signed rank test 값을 구해보자
 library('car')
