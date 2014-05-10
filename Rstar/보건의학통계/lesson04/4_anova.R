@@ -13,8 +13,12 @@ tapply(dGroup$score, dGroup$group, shapiro.test)
 # http://acpi.tistory.com/33
 
 # 등분산 검정
+## bartlett.test
 bartlett.test(score~group, data=dGroup)
 # p=0.9603 > 0.05 : "분산이 서로 같다."를 기각할 수 없다.
+## levene test
+library(car)
+leveneTest(score~group, data=dGroup, center=mean)
 
 # ANOVA
 dG.lm <- lm(score~group, data=dGroup)
