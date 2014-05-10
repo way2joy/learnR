@@ -7,6 +7,5 @@ plot(dGroup)
 
 # install.packages("clinfun")
 library(clinfun)
-
 jonckheere.test(dGroup$score, dGroup$group)
 
