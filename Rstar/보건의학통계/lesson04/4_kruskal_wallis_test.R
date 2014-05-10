@@ -8,3 +8,6 @@ plot(dGroup)
 # 정규성 검증
 tapply(dGroup$score, dGroup$group, shapiro.test)
 # http://acpi.tistory.com/33
+
+# Kruskal test
+kruskal.test(score~group, data=dGroup)
