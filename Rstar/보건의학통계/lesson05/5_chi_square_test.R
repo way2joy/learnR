@@ -14,4 +14,8 @@ chisq.test(data$obesity, data$diabetes)
 ## – If the number of samples is small in 2×2 contingency table, we need to use fisher.test() for fisher’s exact testing. It uses hypergeometric distribution instead of chi square for more accurate test.
 ## – If samples are paired (like measurement for the same person before and after of treatment or like rating change before and after election campaign), we need to use mcnemar.test(). But even in mcnemar.test(), if the expected count is small, we need to use binom.test() to see if there’s any difference.
 
+# cf) 
 mcnemar.test(data$obesity, data$diabetes)
+
+# cf)
+fisher.test(data2$obesity, data2$diabetes)
