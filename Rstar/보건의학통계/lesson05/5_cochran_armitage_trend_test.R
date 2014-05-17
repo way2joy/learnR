@@ -7,12 +7,11 @@ head(data3)
 data3$obesity <- as.factor(data3$obesity)
 data3$diabetes <- as.factor(data3$diabetes)
 
+# install.packages('coin')
+library("coin")
+
 table(lungtumor$dose, lungtumor$tumor)
 
-0  1
-0 38  2
-1 43  7
-2 33 15
 R>
   R> ### Cochran-Armitage test (permutation equivalent to correlation
   R> ### between dose and tumor), cf. Table 2 for results
