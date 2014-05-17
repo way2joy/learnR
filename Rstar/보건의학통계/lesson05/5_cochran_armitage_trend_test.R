@@ -16,6 +16,4 @@ library("coin")
 table(data3$obesity, data3$diabetes)
 independence_test(diabetes~obesity, data=data3, teststat = "quad")
 
-?independence_test
-
 ###################################################
