@@ -18,4 +18,4 @@ chisq.test(data$obesity, data$diabetes)
 mcnemar.test(data$obesity, data$diabetes)
 
 # cf)
-fisher.test(data2$obesity, data2$diabetes)
+fisher.test(data$obesity, data$diabetes)
