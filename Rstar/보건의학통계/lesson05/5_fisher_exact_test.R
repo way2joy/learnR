@@ -8,3 +8,4 @@ head(data2)
 data2$obesity <- as.factor(data2$obesity)
 data2$diabetes <- as.factor(data2$diabetes)
 
+fisher.test(data2$obesity, data2$diabetes)
