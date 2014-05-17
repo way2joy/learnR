@@ -7,12 +7,10 @@ head(data3)
 data3$obesity <- as.factor(data3$obesity)
 data3$diabetes <- as.factor(data3$diabetes)
 
+### Cochran-Armitage test (permutation equivalent to correlation
+
 # install.packages('coin')
 library("coin")
-
-
-
-### Cochran-Armitage test (permutation equivalent to correlation
 table(data3$obesity, data3$diabetes)
 independence_test(diabetes~obesity, data=data3, teststat = "quad")
 
