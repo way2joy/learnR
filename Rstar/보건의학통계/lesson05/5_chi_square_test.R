@@ -1,1 +1,2 @@
 setwd("~/SparkleShare/learnR/Rstar/보건의학통계/lesson05")
+
