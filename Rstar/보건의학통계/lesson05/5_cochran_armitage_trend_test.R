@@ -10,11 +10,9 @@ data3$diabetes <- as.factor(data3$diabetes)
 # install.packages('coin')
 library("coin")
 
-table(lungtumor$dose, lungtumor$tumor)
 
-R>
-  R> ### Cochran-Armitage test (permutation equivalent to correlation
-  R> ### between dose and tumor), cf. Table 2 for results
-  R> independence_test(tumor ~ dose, data = lungtumor, teststat = "quad")
 
-Asymptotic General Independence Test
+### Cochran-Armitage test (permutation equivalent to correlation
+table(data3$obesity, data3$diabetes)
+independence_test(diabetes~obesity, data=data3, teststat = "quad")
+
