@@ -55,4 +55,10 @@ cor.test(data2$Age, data2$SBP, method= "kendall")
 ```
 
 
+### 실습3 : 단순회귀분석
+```{r}
+r <- lm(regression$height ~ regression$weight)
+> abline(r)
+```
+
 
