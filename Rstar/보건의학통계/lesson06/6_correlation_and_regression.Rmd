@@ -6,7 +6,7 @@
 ```{r}
 setwd("~/SparkleShare/learnR/Rstar/보건의학통계
 /lesson06")
-data <- read.csv("6_correlation_and_regression.csv")
+data <- read.csv("6_correlation_and_regression.csv", header=T)
 ```
 
 
