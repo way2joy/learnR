@@ -104,6 +104,14 @@ data.reduced <- step(data.mlm, direction='backward')
 summary(data.reduced)
 ```
 
+회귀계수의 신뢰구간
+```{r}
+confint(data.reduced)
+```
+
+```{r fig.width=7, fig.height=6}
+plot(data.reduced, which=1)
+```
 
 
 
