@@ -35,6 +35,7 @@ plot(data)
 
 ```r
 plot(BMI ~ waistline, data = data)
+abline(lm(BMI ~ waistline, data = data))
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-22.png) 
@@ -159,7 +160,6 @@ cor.test(data2$Age, data2$SBP, method = "kendall")
 ### 실습3 : 단순회귀분석
 
 
-
 ```r
 data.lm <- lm(data$BMI ~ data$waistline)
 summary(data.lm)
@@ -188,11 +188,17 @@ summary(data.lm)
 
 
 Call : 회귀분석에 사용된 모델 식
+
 Residuals: 잔차, 즉 회귀선의 값과 실제 관측 값의 차이를 각 분위수로 표시
+
 Coefficients: 절편, 독립변수 등에 대한 회귀계수를 표시
+
 Residual standard error: 잔차의 표준오차와 자유도
+
 Multiple R-squared: 결정계수, 즉 추정된 회귀선이 실제 관측값을 얼마나 잘 설명하는 가를 나타냄. 0에서 1사이의 값을 가지며 1은 실제관측 값들이 회귀선 상에 위치함을 의미.
+
 Adjusted R-squared: 수정결정계수, 주로 다중회귀분석에서 독립변수를 증가시키면 결정계수가 올라가는 것에 대한 대안으로 사용.
+
 F-statistic: F통계량은 해당 모형이 의미가 있는지 아닌지를 알려줌. 계수 중 하나라도 0이 아닌 것이 있다면 그 모형은 유의미하다고 판단.
 
 선형관계 확인
@@ -230,6 +236,131 @@ qq.plot(resid(data.lm))
 
 
 reference
-[1](http://analyticsstory.com/98)
-[2](http://starmethod.tistory.com/95)
+[[1]](http://analyticsstory.com/98)
+[[2]](http://starmethod.tistory.com/95)
+
+### 실습4 : 다중회귀분석
+
+
+```r
+data.mlm <- lm(SBP ~ ., data = data)
+summary(data.mlm)
+```
+
+```
+## 
+## Call:
+## lm(formula = SBP ~ ., data = data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -43.45 -11.63  -1.08   9.64  64.92 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)  -19.360    141.974   -0.14    0.892  
+## age            0.190      0.105    1.81    0.072 .
+## height         0.591      0.862    0.69    0.493  
+## weight        -1.024      1.014   -1.01    0.313  
+## waistline      0.323      0.221    1.46    0.144  
+## BMI            3.225      2.718    1.19    0.236  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 18.1 on 316 degrees of freedom
+## Multiple R-squared:  0.0967,	Adjusted R-squared:  0.0824 
+## F-statistic: 6.77 on 5 and 316 DF,  p-value: 5.19e-06
+```
+
+
+후진선택법
+
+```r
+data.reduced <- step(data.mlm, direction = "backward")
+```
+
+```
+## Start:  AIC=1870
+## SBP ~ age + height + weight + waistline + BMI
+## 
+##             Df Sum of Sq    RSS  AIC
+## - height     1       154 103267 1868
+## - weight     1       333 103446 1869
+## - BMI        1       459 103573 1869
+## <none>                   103113 1870
+## - waistline  1       700 103813 1870
+## - age        1      1066 104179 1871
+## 
+## Step:  AIC=1868
+## SBP ~ age + weight + waistline + BMI
+## 
+##             Df Sum of Sq    RSS  AIC
+## <none>                   103267 1868
+## - waistline  1       673 103940 1868
+## - age        1      1064 104330 1869
+## - weight     1      1254 104520 1870
+## - BMI        1      2310 105577 1873
+```
+
+```r
+summary(data.reduced)
+```
+
+```
+## 
+## Call:
+## lm(formula = SBP ~ age + weight + waistline + BMI, data = data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -43.37 -11.60  -1.21   9.97  65.88 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   77.724     11.123    6.99  1.7e-11 ***
+## age            0.190      0.105    1.81   0.0717 .  
+## weight        -0.339      0.173   -1.96   0.0507 .  
+## waistline      0.317      0.220    1.44   0.1515    
+## BMI            1.396      0.524    2.66   0.0081 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 18 on 317 degrees of freedom
+## Multiple R-squared:  0.0954,	Adjusted R-squared:  0.084 
+## F-statistic: 8.36 on 4 and 317 DF,  p-value: 2.03e-06
+```
+
+
+회귀계수의 신뢰구간
+
+```r
+confint(data.reduced)
+```
+
+```
+##                2.5 %   97.5 %
+## (Intercept) 55.83879 99.60890
+## age         -0.01685  0.39623
+## weight      -0.67846  0.00101
+## waistline   -0.11667  0.74978
+## BMI          0.36452  2.42698
+```
+
+
+회귀잔차 그래프
+
+```r
+plot(data.reduced, which = 1)
+```
+
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
+
+
+
+
+
+reference
+[[1]](http://ultradorosy.blog.me/50166610239)
+[[2]](http://dogmas.tistory.com/entry/%EB%8B%A4%EC%A4%91%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D-multiple-regression-analysis-%ED%86%B5%EA%B3%84-R-%EC%B4%88%EA%B8%89-12)
+
 
