@@ -114,9 +114,6 @@ confint(data.reduced)
 plot(data.reduced, which=1)
 ```
 
-
-
-
 reference
 [[1]](http://ultradorosy.blog.me/50166610239)
 [[2]](http://dogmas.tistory.com/entry/%EB%8B%A4%EC%A4%91%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D-multiple-regression-analysis-%ED%86%B5%EA%B3%84-R-%EC%B4%88%EA%B8%89-12)
