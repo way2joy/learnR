@@ -98,10 +98,12 @@ data.mlm <- lm(SBP ~., data=data)
 summary(data.mlm)
 ```
 
+후진선택법
 ```{r}
 data.reduced <- step(data.mlm, direction='backward')
 summary(data.reduced)
 ```
+
 
 
 
