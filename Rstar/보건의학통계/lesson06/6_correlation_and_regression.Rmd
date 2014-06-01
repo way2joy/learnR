@@ -3,12 +3,24 @@
 
 의미 : 선형적 상관관계의 정도를 보는 것
 
+### 실습
+
+1) 허리둘레와 BMI의 산점도를 그린다.
+
 ```{r}
-setwd("~/SparkleShare/learnR/Rstar/보건의학통계
-/lesson06")
+setwd("~/SparkleShare/learnR/Rstar/보건의학통계/lesson06")
 data <- read.csv("6_correlation_and_regression.csv", header=T)
+head(data)
 ```
 
+```{r fig.width=7, fig.height=6}
+plot(cars)
+```
+
+2) 허리둘레와 BMI의 상관관계를 분석한다. 
+
+
+3) 체중의 영향을 고려하여 허리둘레와 BMI의 편상관계수를 구한다. 
 
 ```{r}
 summary(cars)
