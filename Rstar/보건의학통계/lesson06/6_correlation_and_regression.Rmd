@@ -21,7 +21,7 @@ plot(BMI~waistline, data=data)
 # corrplot
 data.cor <- cor(data)
 library(corrplot)
-corrplot(data.cor, method='shade', shade.col=NA, tl.col='black', tl.srt=45)
+corrplot(data.cor, method='shade', shade.col=NA, tl.col='black', tl.srt=45, order='hclust')
 ```
 
 2) 허리둘레와 BMI의 상관관계를 분석한다. 
