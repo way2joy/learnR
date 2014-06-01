@@ -109,6 +109,7 @@ summary(data.reduced)
 confint(data.reduced)
 ```
 
+회귀잔차 그래프
 ```{r fig.width=7, fig.height=6}
 plot(data.reduced, which=1)
 ```
