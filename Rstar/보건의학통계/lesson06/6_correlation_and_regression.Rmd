@@ -51,6 +51,7 @@ data2 <- read.csv("6_spearman.csv", header=T)
 head(data2)
 
 cor.test(data2$Age, data2$SBP, method= "spearman")
+cor.test(data2$Age, data2$SBP, method= "kendall")
 ```
 
 
