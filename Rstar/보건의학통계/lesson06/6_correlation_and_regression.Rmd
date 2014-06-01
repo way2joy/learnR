@@ -20,6 +20,9 @@ plot(BMI~waistline, data=data)
 
 2) 허리둘레와 BMI의 상관관계를 분석한다. 
 
+```{r}
+cor(data$BMI, data$waistline)
+```
 
 3) 체중의 영향을 고려하여 허리둘레와 BMI의 편상관계수를 구한다. 
 
