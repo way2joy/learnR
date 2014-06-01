@@ -39,12 +39,6 @@ library('ppcor')
 pcor.test(data$waistline, data$BMI, data$weight)
 ```
 
-
-
-```{r fig.width=7, fig.height=6}
-plot(cars)
-```
-
 ### 실습2 : 비모수 상관분석
 ```{r}
 data2 <- read.csv("6_spearman.csv", header=T)
@@ -57,8 +51,12 @@ cor.test(data2$Age, data2$SBP, method= "kendall")
 
 ### 실습3 : 단순회귀분석
 ```{r}
-r <- lm(regression$height ~ regression$weight)
-> abline(r)
+data.lm <- lm(data$BMI ~ data$waistline)
+summary(data.lm)
 ```
 
+```{r fig.width=7, fig.height=6}
+plot(data$BMI ~ data$waistline)
+abline(data.lm)
+```
 
