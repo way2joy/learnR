@@ -48,5 +48,7 @@ plot(cars)
 ### 실습2 : 비모수 상관분석
 ```{r}
 data2 <- read.csv("6_spearman.csv", header=T)
+head(data2)
 ```
+
 
