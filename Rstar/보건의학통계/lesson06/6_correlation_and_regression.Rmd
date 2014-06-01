@@ -70,7 +70,7 @@ F-statistic: F통계량은 해당 모형이 의미가 있는지 아닌지를 알
 ```{r fig.width=7, fig.height=6}
 plot(data$BMI ~ data$waistline)
 abline(data.lm)
-hist(resid(lm.a)) ##히스토그램으로 잔차의 정규성증명
+hist(resid(lm.a)) #잔차의 정규성증명
 ```
 
 
