@@ -53,6 +53,7 @@ cor.test(data2$Age, data2$SBP, method= "kendall")
 
 reference
 [1](http://analyticsstory.com/98)
+[2](http://starmethod.tistory.com/95)
 
 ```{r}
 data.lm <- lm(data$BMI ~ data$waistline)
