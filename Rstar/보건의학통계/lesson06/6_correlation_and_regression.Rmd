@@ -3,7 +3,7 @@
 
 의미 : 선형적 상관관계의 정도를 보는 것
 
-### 실습
+### 실습1 : 모수적 상관분석
 
 1) 허리둘레와 BMI의 산점도를 그린다.
 
@@ -44,4 +44,6 @@ pcor.test(data$waistline, data$BMI, data$weight)
 ```{r fig.width=7, fig.height=6}
 plot(cars)
 ```
+
+### 실습2 : 비모수 상관분석
 
