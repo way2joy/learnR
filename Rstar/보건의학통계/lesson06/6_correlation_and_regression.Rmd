@@ -60,3 +60,4 @@ plot(data$BMI ~ data$waistline)
 abline(data.lm)
 ```
 
+
