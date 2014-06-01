@@ -51,9 +51,6 @@ cor.test(data2$Age, data2$SBP, method= "kendall")
 
 ### 실습3 : 단순회귀분석
 
-reference
-[1](http://analyticsstory.com/98)
-[2](http://starmethod.tistory.com/95)
 
 ```{r}
 data.lm <- lm(data$BMI ~ data$waistline)
@@ -79,4 +76,7 @@ abline(data.lm)
 hist(resid(data.lm))
 ```
 
+reference
+[1](http://analyticsstory.com/98)
+[2](http://starmethod.tistory.com/95)
 
