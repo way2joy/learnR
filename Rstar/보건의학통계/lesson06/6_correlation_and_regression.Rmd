@@ -34,6 +34,8 @@ cor.test(data$waistline, data$BMI)
 3) 체중의 영향을 고려하여 허리둘레와 BMI의 편상관계수를 구한다. 
 
 ```{r}
+#install.packages('ppcor')
+library('ppcor')
 pcor.test(data$waistline, data$BMI, data$weight)
 ```
 
