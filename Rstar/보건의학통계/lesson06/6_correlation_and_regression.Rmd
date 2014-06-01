@@ -93,6 +93,11 @@ reference
 
 ### 실습4 : 다중회귀분석
 
+```{r}
+data.mlm <- lm(SBP ~., data=data)
+
+```
+
 
 
 
