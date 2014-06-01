@@ -76,6 +76,7 @@ abline(data.lm)
 잔차의 정규성증명
 ```{r fig.width=7, fig.height=6}
 hist(resid(data.lm))
+lines(density(resid(data.lm)))
 ```
 
 
