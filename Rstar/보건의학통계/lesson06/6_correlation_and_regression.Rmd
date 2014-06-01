@@ -67,10 +67,15 @@ Multiple R-squared: 결정계수, 즉 추정된 회귀선이 실제 관측값을
 Adjusted R-squared: 수정결정계수, 주로 다중회귀분석에서 독립변수를 증가시키면 결정계수가 올라가는 것에 대한 대안으로 사용.
 F-statistic: F통계량은 해당 모형이 의미가 있는지 아닌지를 알려줌. 계수 중 하나라도 0이 아닌 것이 있다면 그 모형은 유의미하다고 판단.
 
+선형관계 확인
 ```{r fig.width=7, fig.height=6}
 plot(data$BMI ~ data$waistline)
 abline(data.lm)
-hist(resid(data.lm)) #잔차의 정규성증명
+```
+
+잔차의 정규성증명
+```{r fig.width=7, fig.height=6}
+hist(resid(data.lm))
 ```
 
 
