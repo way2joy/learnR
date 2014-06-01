@@ -95,9 +95,13 @@ reference
 
 ```{r}
 data.mlm <- lm(SBP ~., data=data)
-
+summary(data.mlm)
 ```
 
+```{r}
+data.reduced <- step(data.mlm, direction='backward')
+summary(data.reduced)
+```
 
 
 
