@@ -16,6 +16,7 @@ head(data)
 ```{r fig.width=7, fig.height=6}
 plot(data)
 plot(BMI~waistline, data=data)
+corplot(data)
 ```
 
 2) 허리둘레와 BMI의 상관관계를 분석한다. 
