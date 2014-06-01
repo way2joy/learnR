@@ -76,6 +76,11 @@ abline(data.lm)
 hist(resid(data.lm))
 ```
 
+```{r fig.width=7, fig.height=6}
+library(car)
+qq.plot(resid(data.lm))
+```
+
 reference
 [1](http://analyticsstory.com/98)
 [2](http://starmethod.tistory.com/95)
