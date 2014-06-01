@@ -88,6 +88,6 @@ qq.plot(resid(data.lm))
 ```
 
 reference
-[1](http://analyticsstory.com/98)
-[2](http://starmethod.tistory.com/95)
+[[1]](http://analyticsstory.com/98)
+[[2]](http://starmethod.tistory.com/95)
 
