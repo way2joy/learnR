@@ -51,21 +51,27 @@ cor.test(data2$Age, data2$SBP, method= "kendall")
 
 ### 실습3 : 단순회귀분석
 
-
 ```{r}
 data.lm <- lm(data$BMI ~ data$waistline)
 summary(data.lm)
 ```
 
 Call : 회귀분석에 사용된 모델 식
+
 Residuals: 잔차, 즉 회귀선의 값과 실제 관측 값의 차이를 각 분위수로 표시
+
 Coefficients: 절편, 독립변수 등에 대한 회귀계수를 표시
+
 Residual standard error: 잔차의 표준오차와 자유도
+
 Multiple R-squared: 결정계수, 즉 추정된 회귀선이 실제 관측값을 얼마나 잘 설명하는 가를 나타냄. 0에서 1사이의 값을 가지며 1은 실제관측 값들이 회귀선 상에 위치함을 의미.
+
 Adjusted R-squared: 수정결정계수, 주로 다중회귀분석에서 독립변수를 증가시키면 결정계수가 올라가는 것에 대한 대안으로 사용.
+
 F-statistic: F통계량은 해당 모형이 의미가 있는지 아닌지를 알려줌. 계수 중 하나라도 0이 아닌 것이 있다면 그 모형은 유의미하다고 판단.
 
 선형관계 확인
+
 ```{r fig.width=7, fig.height=6}
 plot(data$BMI ~ data$waistline)
 abline(data.lm)
