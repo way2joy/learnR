@@ -17,6 +17,7 @@ head(data)
 # plot
 plot(data)
 plot(BMI~waistline, data=data)
+abline(lm(BMI~waistline, data=data))
 
 # corrplot
 data.cor <- cor(data)
