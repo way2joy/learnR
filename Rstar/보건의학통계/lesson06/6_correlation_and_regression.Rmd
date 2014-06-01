@@ -27,8 +27,8 @@ corrplot(data.cor, method='shade', shade.col=NA, tl.col='black', tl.srt=45, orde
 2) 허리둘레와 BMI의 상관관계를 분석한다. 
 
 ```{r}
-data.cor['waistline','BMI']
 cor.test(data$waistline, data$BMI)
+data.cor['waistline','BMI']
 ```
 
 3) 체중의 영향을 고려하여 허리둘레와 BMI의 편상관계수를 구한다. 
