@@ -51,7 +51,7 @@ cor.test(data2$Age, data2$SBP, method= "kendall")
 
 ### 실습3 : 단순회귀분석
 
-참고
+reference
 [1](http://analyticsstory.com/98)
 
 ```{r}
