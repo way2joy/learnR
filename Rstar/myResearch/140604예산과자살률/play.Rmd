@@ -30,11 +30,15 @@ head(myData)
 
 우선 자살율과 다른 것들이 상관성이 있는지 부터 보자.
 ```{r}
-plot(myData[c(4,5,6,7,8,9,10)])
+myData2 <- myData[c(4,5,6,7,8,9,10)]
+plot(myData2)
+for(i in 1:6){
+  cor.test(myData2[i], myData2$SR)
+}
 
 attach(myData)
-
-cor.test(myData$SR, myData$2009CS)
+cor.test(myData2)
+?cor.test
 myData$SR
 detach(myData)
 ```
