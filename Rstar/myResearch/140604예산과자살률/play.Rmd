@@ -76,7 +76,7 @@ abline(myData.lm2012)
 
 그럼 다중회귀분석을 해 보자.
 ```{r}
-myData.mlm <- lm(SR~., data=myData[5,8,10])
+myData.mlm <- lm(SR~., data=myData[c(4:10)])
 summary(myData.mlm)
 ```
 
