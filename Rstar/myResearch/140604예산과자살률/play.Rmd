@@ -36,16 +36,8 @@ plot(myData[,c(4:10)])
 산점도 상으로 토건예산과 복지예산 사이에 음의 상관성이 있는 것으로 보인다. 하지만 자살율과의 관계는 모호하다. 
 
 ```{r}
-for(i in 4:9){
-  rs <- cor.test(myData[,i], myData$SR)
-  summary(rs)
-}
-
 attach(myData)
-cor.test(myData2)
-?cor.test
-myData$SR
-detach(myData)
+cor.test('2009CS', 'SR')
 ```
 
 ```{r}
