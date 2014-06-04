@@ -79,6 +79,7 @@ abline(myData.lm2012)
 ```
 
 뉴스타파에서 보도 했던 토건예산 증감률과 2012년 자살율, 복지예산 증감률과 2012년 자살률을 선형모델로 나타내 보자.
+우선 토건예산 증감률과 2012년 자살률을 보자.
 ```{r fig.width=7, fig.height=6}
 myData.lmfCS <- lm(myData$SR ~ myData$fCS)
 summary(myData.lmfCS)
@@ -87,6 +88,7 @@ plot(myData$SR ~ myData$fCS)
 abline(myData.lmfCS)
 ```
 
+다음으로 
 ```{r fig.width=7, fig.height=6}
 myData.lmfWF <- lm(myData$SR ~ myData$fWF)
 summary(myData.lmfWF)
