@@ -44,7 +44,6 @@ cor.test(fCS, SR)
 cor.test(WF2009, SR)
 cor.test(WF2012, SR)
 cor.test(fWF, SR)
-detach(myData)
 ```
 
 결과를 보면 모두 p.value가 0.05 이하로 상관성이 없다고 할 수 없겠다. 하지만 상관계수는 -0.3에서 0.3 사이로 비교적 낮다고 할 수 있다. 
@@ -57,7 +56,7 @@ cor.test(CS2012, WF2012)
 cor.test(fCS, fWF)
 ```
 
-
+결과를 보면 
 ```{r}
 data.mlm <- lm(SBP ~., data=data)
 summary(data.mlm)
