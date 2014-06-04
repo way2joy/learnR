@@ -251,7 +251,7 @@ cor.test(fWF, SR)
 ```
 
 
-결과를 보면 모두 p.value가 0.05 이하로 상관성이 없다고 할 수 없겠다. 하지만 상관계수는 -0.3에서 0.3 사이로 비교적 낮다고 할 수 있다. 
+결과를 보면 모두 p.value가 0.05 이하로 상관성이 없다고 할 수 없겠다. 하지만 상관계수는 -0.3에서 0.4 사이로 비교적 낮다고 할 수 있다. 
 
 그렇다면 토건예산과 복지예산 사이의 관계는 어떨까.
 
@@ -315,9 +315,9 @@ detach(myData)
 ```
 
 
-결과를 보면 p.value가 0.05 이하로 상관성이 없다고 할 수 없겠다. 2009년의 경우 상관계수는 -0.79, 2012년의 경우 -0.81로 토건예산과 복지예산 사이에는 음의 상관성이 비교적 강하게 작용함을 확인했다. 다만 증감의 경우 -0.5 정도로 상관성이 크다고는 할 수 없었다. 즉, 토건예산의 증감과 복지예산의 증감이 밀접하게 관련되어 있다고 보기는 어렵다. 
+결과를 보면 p.value가 0.05 이하로 상관성이 없다고 할 수 없겠다. 2009년의 경우 상관계수는 -0.79, 2012년의 경우 -0.81로 토건예산과 복지예산 사이에는 음의 상관성이 비교적 강하게 작용함을 확인했다. 다만 증감의 경우 -0.57 정도로 상관성이 크다고는 할 수 없었다. 즉, 토건예산의 증감과 복지예산의 증감이 밀접하게 관련되어 있다고 보기는 어렵다. 
 
-이를 선형 관계로 나타내 보자
+토건예산과 복지예산의 관계를 선형모델로 나타내 보자
 2009년의 경우
 
 ```r
@@ -400,6 +400,92 @@ abline(myData.lm2012)
 ```
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-75.png) 
+
+
+뉴스타파에서 보도 했던 토건예산 증감률과 2012년 자살율, 복지예산 증감률과 2012년 자살률을 선형모델로 나타내 보자.
+우선 토건예산 증감률과 2012년 자살률을 보자.
+
+```r
+myData.lmfCS <- lm(myData$SR ~ myData$fCS)
+summary(myData.lmfCS)
+```
+
+```
+## 
+## Call:
+## lm(formula = myData$SR ~ myData$fCS)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -18.13  -4.97  -1.45   3.39  28.76 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  29.7891     0.8259   36.07   <2e-16 ***
+## myData$fCS    0.2142     0.0653    3.28   0.0012 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.58 on 240 degrees of freedom
+## Multiple R-squared:  0.0429,	Adjusted R-squared:  0.0389 
+## F-statistic: 10.8 on 1 and 240 DF,  p-value: 0.00119
+```
+
+```r
+plot(myData.lmfCS)
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-81.png) ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-82.png) ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-83.png) ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-84.png) 
+
+```r
+plot(myData$SR ~ myData$fCS)
+abline(myData.lmfCS)
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-85.png) 
+
+
+다음으로 복지예산 증감률과 2012년 자살률을 보자. 
+
+```r
+myData.lmfWF <- lm(myData$SR ~ myData$fWF)
+summary(myData.lmfWF)
+```
+
+```
+## 
+## Call:
+## lm(formula = myData$SR ~ myData$fWF)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -21.14  -4.93  -1.24   3.45  29.56 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   29.023      0.626   46.36   <2e-16 ***
+## myData$fWF    -0.456      0.127   -3.59    4e-04 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.55 on 240 degrees of freedom
+## Multiple R-squared:  0.051,	Adjusted R-squared:  0.047 
+## F-statistic: 12.9 on 1 and 240 DF,  p-value: 4e-04
+```
+
+```r
+plot(myData.lmfWF)
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-91.png) ![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-92.png) ![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-93.png) ![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-94.png) 
+
+```r
+plot(myData$SR ~ myData$fWF)
+abline(myData.lmfWF)
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-95.png) 
+
 
 
 그럼 다중회귀분석을 해 보자.
@@ -526,5 +612,5 @@ confint(myData.reduced)
 plot(myData.reduced, which = 1)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
 
