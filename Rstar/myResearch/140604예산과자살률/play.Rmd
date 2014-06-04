@@ -88,7 +88,7 @@ plot(myData$SR ~ myData$fCS)
 abline(myData.lmfCS)
 ```
 
-다음으로 
+다음으로 복지예산 증감률과 2012년 자살률을 보자. 
 ```{r fig.width=7, fig.height=6}
 myData.lmfWF <- lm(myData$SR ~ myData$fWF)
 summary(myData.lmfWF)
