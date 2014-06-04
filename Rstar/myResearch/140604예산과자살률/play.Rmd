@@ -75,9 +75,7 @@ abline(myData.lm2012)
 ```
 
 그럼 다중회귀분석을 해 보자.
-```{r fig.width=7, fig.height=6}
-plot(data.reduced, which=1)
-```
+
 
 
 ```{r}
