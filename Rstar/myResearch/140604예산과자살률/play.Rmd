@@ -37,13 +37,13 @@ plot(myData[,c(4:10)])
 
 ```{r}
 attach(myData)
-cor.test(CS2009, SR)
-cor.test(CS2012, SR)
-cor.test(fCS, SR)
+cor.test(CS2009, SR)$p.value
+cor.test(CS2012, SR)$p.value
+cor.test(fCS, SR)$p.value
 
-cor.test(WF2009, SR)
-cor.test(WF2012, SR)
-cor.test(fWF, SR)
+cor.test(WF2009, SR)$p.value
+cor.test(WF2012, SR)$p.value
+cor.test(fWF, SR)$p.value
 detach(myData)
 ```
 
