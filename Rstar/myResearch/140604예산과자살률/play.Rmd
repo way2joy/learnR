@@ -20,7 +20,7 @@ summary(myData)
 편의를 위해 칼럼명을 바꾸었다. 
 ```{r}
 names(myData)
-names(myData) <- c("No", "loc1", "loc2", "2009CS", "2012CS", "fCS", "2009WF", "2012WF", "fWF", "SR")
+names(myData) <- c("No", "loc1", "loc2", "CS2009", "CS2012", "fCS", "WF2009", "WF2012", "fWF", "SR")
 # CS : Construction 토건
 # WF : Welfare 복지
 # f : fluctuate 증감
@@ -37,7 +37,14 @@ plot(myData[,c(4:10)])
 
 ```{r}
 attach(myData)
-cor.test('2009CS', 'SR')
+cor.test(CS2009, SR) # 
+cor.test(CS2012, SR)
+cor.test(fCS, SR)
+
+cor.test(WF2009, SR)
+cor.test(WF2012, SR)
+cor.test(fWF, SR)
+detach(myData)
 ```
 
 ```{r}
