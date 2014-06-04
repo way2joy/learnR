@@ -47,7 +47,7 @@ cor.test(fWF, SR)
 detach(myData)
 ```
 
-모두 p.value가 0.05 이하로 상관성이 없다고 할 수 없겠다. 
+모두 p.value가 0.05 이하로 상관성이 없다고 할 수 없겠다. 상관계수는 
 
 ```{r}
 data.mlm <- lm(SBP ~., data=data)
