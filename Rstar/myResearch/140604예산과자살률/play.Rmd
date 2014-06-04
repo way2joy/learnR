@@ -9,7 +9,7 @@
 ```{r}
 # 자료읽기
 setwd("~/SparkleShare/learnR/Rstar/myResearch/140604예산과자살률")
-myData <- read.csv("data.txt", header=T, sep="\t")
+myData <- read.csv("data.tsv", header=T, sep="\t")
 
 # 자료 확인
 head(myData)
