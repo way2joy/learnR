@@ -29,13 +29,13 @@ head(myData)
 ```
 
 우선 자살율과 다른 것들이 상관성이 있는지 부터 보자.
-```{r}
+```{r fig.width=7, fig.height=6}
 plot(myData[,c(4:10)])
-for(i in 4:7){
-  rs <- cor.test(myData[,i], myData$SR)
-  return rs
-}
-length(myData[,4])
+```
+
+
+```{r}
+cor.test(myData[,9], myData$SR)
 attach(myData)
 cor.test(myData2)
 ?cor.test
@@ -43,13 +43,26 @@ myData$SR
 detach(myData)
 ```
 
-
-When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
 ```{r}
-summary(cars)
+data.mlm <- lm(SBP ~., data=data)
+summary(data.mlm)
 ```
 
+후진선택법
+```{r}
+data.reduced <- step(data.mlm, direction='backward')
+summary(data.reduced)
+```
+
+회귀계수의 신뢰구간
+```{r}
+confint(data.reduced)
+```
+
+회귀잔차 그래프
+```{r fig.width=7, fig.height=6}
+plot(data.reduced, which=1)
+```
 You can also embed plots, for example:
 
 ```{r fig.width=7, fig.height=6}
