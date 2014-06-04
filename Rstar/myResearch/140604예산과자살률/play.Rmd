@@ -92,16 +92,10 @@ summary(myData.reduced)
 
 회귀계수의 신뢰구간
 ```{r}
-confint(data.reduced)
+confint(myData.reduced)
 ```
 
 회귀잔차 그래프
 ```{r fig.width=7, fig.height=6}
-plot(data.reduced, which=1)
+plot(myData.reduced, which=1)
 ```
-You can also embed plots, for example:
-
-```{r fig.width=7, fig.height=6}
-plot(cars)
-```
-
