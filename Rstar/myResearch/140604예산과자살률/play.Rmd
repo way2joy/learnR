@@ -1,0 +1,21 @@
+토건예산과 복지예산, 그리고 삶의 질(=자살율)
+=======================================================
+
+뉴스타파에서 한국 각 지자체 토건예산과 복지예산의 증감을 추적하여 삶의 질과 함께 공개한 자료. 
+
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring web pages (click the **Help** toolbar button for more details on using R Markdown).
+
+When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r fig.width=7, fig.height=6}
+plot(cars)
+```
+
