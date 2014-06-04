@@ -63,6 +63,8 @@ detach(myData)
 2009년의 경우
 ```{r fig.width=7, fig.height=6}
 myData.lm2009 <- lm(myData$WF2009 ~ myData$CS2009)
+summary(myData.lm2009)
+plot(myData.lm2009)
 plot(myData$WF2009 ~ myData$CS2009)
 abline(myData.lm2009)
 ```
@@ -70,6 +72,8 @@ abline(myData.lm2009)
 2012년의 경우
 ```{r fig.width=7, fig.height=6}
 myData.lm2012 <- lm(myData$WF2012 ~ myData$CS2012)
+summary(myData.lm2009)
+plot(myData.lm2012)
 plot(myData$WF2012 ~ myData$CS2012)
 abline(myData.lm2012)
 ```
