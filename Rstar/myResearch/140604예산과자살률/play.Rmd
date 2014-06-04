@@ -76,14 +76,14 @@ abline(myData.lm2012)
 
 그럼 다중회귀분석을 해 보자.
 ```{r}
-myData.mlm <- lm(SR~., data=myData)
+myData.mlm <- lm(SR~., data=myData[5,8,10])
 summary(myData.mlm)
 ```
 
 후진선택법을 이용해 보자.
 ```{r}
-data.reduced <- step(data.mlm, direction='backward')
-summary(data.reduced)
+myData.reduced <- step(myData.mlm, direction='backward')
+summary(myData.reduced)
 ```
 
 회귀계수의 신뢰구간
