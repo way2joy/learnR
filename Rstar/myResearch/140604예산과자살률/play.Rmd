@@ -37,7 +37,7 @@ plot(myData[,c(4:10)])
 
 ```{r}
 attach(myData)
-cor.test(CS2009, SR) # 
+cor.test(CS2009, SR)
 cor.test(CS2012, SR)
 cor.test(fCS, SR)
 
