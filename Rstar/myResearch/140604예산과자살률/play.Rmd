@@ -52,7 +52,9 @@ detach(myData)
 그렇다면 토건예산과 복지예산 사이의 관계는 어떨까.
 
 ```{r}
-
+cor.test(CS2009, WF2009)
+cor.test(CS2012, WF2012)
+cor.test(fCS, fWF)
 ```
 
 
