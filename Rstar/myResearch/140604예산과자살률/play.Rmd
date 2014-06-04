@@ -37,7 +37,8 @@ plot(myData[,c(4:10)])
 
 ```{r}
 for(i in 4:9){
-  cor.test(myData[,i], myData$SR)
+  rs <- cor.test(myData[,i], myData$SR)
+  
 }
 
 attach(myData)
