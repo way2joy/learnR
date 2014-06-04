@@ -25,6 +25,7 @@ names(myData) <- c("No", "loc1", "loc2", "2009CS", "2012CS", "fCS", "2009WF", "2
 # WF : Welfare 복지
 # f : fluctuate 증감
 # SR : suicide rate 자살률
+head(myData)
 ```
 
 
