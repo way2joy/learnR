@@ -76,17 +76,11 @@ abline(myData.lm2012)
 
 그럼 다중회귀분석을 해 보자.
 ```{r}
-myData.mlm <- lm()
+myData.mlm <- lm(SR~., data=myData)
+summary(myData.mlm)
 ```
 
-
-
-```{r}
-data.mlm <- lm(SBP ~., data=data)
-summary(data.mlm)
-```
-
-후진선택법
+후진선택법을 이용해 보자.
 ```{r}
 data.reduced <- step(data.mlm, direction='backward')
 summary(data.reduced)
