@@ -15,11 +15,11 @@ myData <- read.csv("data.txt", header=T, sep="\t")
 head(myData)
 str(myData)
 summary(myData)
-names(myData)
 ```
 
 편의를 위해 칼럼명을 바꾸었다. 
 ```{r}
+names(myData)
 names(myData) <- c("No", "loc1", "loc2", "2009CS", "2012CS", "fCS", "2009WF", "2012WF", "fWF", "SR")
 # CS : Construction 토건
 # WF : Welfare 복지
