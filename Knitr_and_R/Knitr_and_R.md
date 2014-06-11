@@ -120,6 +120,7 @@ R 코드가 정리되어 출력되도록 한다.
 
 표 만들기의 예에서, R 코드 실행 결과가 MD으로 바뀌어 HTML로 넘어가기 때문에 결과가 문자열로 출력된다. 
 
+
 ```r
 library("knitr")
 # kable(head(iris))
@@ -202,6 +203,7 @@ kable(head(iris), format = "html")
 
 
 `results='asis'`로 하면 R 코드 실행 결과를 MD로 바뀌지 않고 그대로 넘기기 때문에 HTML에서 표를 그려 보여준다.
+
 |  Sepal.Length|  Sepal.Width|  Petal.Length|  Petal.Width|Species  |
 |-------------:|------------:|-------------:|------------:|:--------|
 |           5.1|          3.5|           1.4|          0.2|setosa   |
