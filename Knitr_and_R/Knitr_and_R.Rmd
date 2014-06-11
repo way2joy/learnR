@@ -184,6 +184,13 @@ kable(iris, 'html', table.attr='id="iris_table"')
 </script>
 
 ```
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(
+    function(){
+      $('#iris_table').dataTable();
+    }
+  );
+</script>
 
 
 
