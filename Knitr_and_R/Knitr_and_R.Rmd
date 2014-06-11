@@ -152,6 +152,8 @@ kable(head(iris, 3), format="html")
 
 * xtable package를 이용하는 방법
 
+#### 동적 table 만들기
+
 ```{r}
 library(knitr)
 kable(mtcars, 'html', table.attr='id="mtcars_table"')
@@ -164,3 +166,8 @@ kable(mtcars, 'html', table.attr='id="mtcars_table"')
     }
   );
 </script>
+
+```{r}
+
+```
+
