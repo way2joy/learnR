@@ -116,7 +116,7 @@ R 코드가 정리되어 출력되도록 한다.
 `results='hide'` : 결과 자체를 출력하지 않는다.
 
 표 만들기의 예에서, R 코드 실행 결과가 MD으로 바뀌어 HTML로 넘어가기 때문에 결과가 문자열로 출력된다. 
-```{r}
+```{r aaa}
 library("knitr")
 kable(head(iris), format="html")
 ```
@@ -125,5 +125,8 @@ kable(head(iris), format="html")
 ```{r results='asis', echo=FALSE}
 library("knitr")
 kable(head(iris), format="html")
+```
+
+```{r aaa, results='asis', echo=FALSE}
 ```
 
