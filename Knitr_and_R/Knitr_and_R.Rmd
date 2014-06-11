@@ -26,11 +26,6 @@ options(rstudio.markdownToHTML =
         )
 ```
 
-표 만들기
-```{r}
-library("knitr")
-kable(head(iris), format="latex")
-```
 
 knitr option
 ----------------------------------------------------
