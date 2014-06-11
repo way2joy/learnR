@@ -116,13 +116,14 @@ R 코드가 정리되어 출력되도록 한다.
 `result='hide'` : 결과 자체를 출력하지 않는다.
 
 표 만들기
-```{r}
+```{r table_latex}
 library("knitr")
 kable(head(iris), format="latex")
 ```
 
 비교해 보자. 
-```{r}
+```{r table_HTML}
 library("knitr")
 kable(head(iris), format="HTML")
 ```
+
