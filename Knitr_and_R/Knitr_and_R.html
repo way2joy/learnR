@@ -1063,7 +1063,7 @@ $(function() {
 <body>
 <h1>Knitr</h1>
 
-<h2>knitr 소개</h2>
+<h2>knitr customize</h2>
 
 <h3>5.4.3 knitrBootstrap 스타일링</h3>
 
@@ -1080,10 +1080,13 @@ library(knitrBootstrap)
 })
 </code></pre>
 
-<h2>knitr 옵션</h2>
+<h2>knitr option</h2>
+
+<h3><code>cache=FALSE</code></h3>
+
+<p>처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)</p>
 
 <ul>
-<li><p><code>cache=FALSE</code> : 처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)</p></li>
 <li><p><code>eval=TRUE</code> : 코드를 실행할지 여부</p></li>
 <li><p><code>include=TRUE</code> : 청크 결과물을 파일에 포함시킬지 여부</p></li>
 <li><p><code>label=&quot;&quot;</code> : 개별 코드 청크의 이름을 부여함</p></li>
