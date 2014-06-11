@@ -1080,22 +1080,37 @@ library(knitrBootstrap)
 })
 </code></pre>
 
+<p>표 만들기</p>
+
+<pre><code class="r">library(&quot;knitr&quot;)
+kable(head(iris), format = &quot;latex&quot;)
+</code></pre>
+
+<pre><code>## 
+## \begin{tabular}{r|r|r|r|l}
+## \hline
+## Sepal.Length &amp; Sepal.Width &amp; Petal.Length &amp; Petal.Width &amp; Species\\
+## \hline
+## 5.1 &amp; 3.5 &amp; 1.4 &amp; 0.2 &amp; setosa\\
+## \hline
+## 4.9 &amp; 3.0 &amp; 1.4 &amp; 0.2 &amp; setosa\\
+## \hline
+## 4.7 &amp; 3.2 &amp; 1.3 &amp; 0.2 &amp; setosa\\
+## \hline
+## 4.6 &amp; 3.1 &amp; 1.5 &amp; 0.2 &amp; setosa\\
+## \hline
+## 5.0 &amp; 3.6 &amp; 1.4 &amp; 0.2 &amp; setosa\\
+## \hline
+## 5.4 &amp; 3.9 &amp; 1.7 &amp; 0.4 &amp; setosa\\
+## \hline
+## \end{tabular}
+</code></pre>
+
 <h2>knitr option</h2>
 
-<p>code chunk 출력물 6가지</p>
+<h3>6.2 일반옵션</h3>
 
-<ul>
-<li>source code</li>
-<li>graph(plot)</li>
-<li>text</li>
-<li>massage</li>
-<li>warning</li>
-<li>error</li>
-</ul>
-
-<h3>일반옵션</h3>
-
-<h4><code>cache=FALSE</code></h4>
+<h4>6.2.1 <code>cache=FALSE</code></h4>
 
 <p>처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)</p>
 
@@ -1104,15 +1119,15 @@ library(knitrBootstrap)
 <p><code>eval=c(1,5)</code> : 1, 5 line code만 실행<br/>
 <code>eval=-c(1,5)</code> : 1, 5 line code 빼고 실행</p>
 
-<h4><code>eval=TRUE</code></h4>
+<h4>6.2.2 <code>eval=TRUE</code></h4>
 
 <p>코드를 실행할지 여부</p>
 
-<h4><code>include=TRUE</code></h4>
+<h4>6.2.3 <code>include=TRUE</code></h4>
 
 <p>청크 결과물을 변환될 md, HTML 파일에 포함시킬지 여부</p>
 
-<h4><code>label=&quot;&quot;</code></h4>
+<h4>6.2.4 <code>label=&quot;&quot;</code></h4>
 
 <p>개별 코드 청크의 이름을 부여함</p>
 
@@ -1126,12 +1141,74 @@ library(knitrBootstrap)
 <pre><code class="r">a &lt;- c(1, 2, 3, 4)
 </code></pre>
 
-<h3>출력물 옵션</h3>
+<h3>6.3 출력물 옵션</h3>
 
-<h3>fig</h3>
+<p>code chunk 출력물 6가지</p>
 
-<p>fig.width=7
-fig.height=5</p>
+<ul>
+<li>source code</li>
+<li>graph(plot)</li>
+<li>text</li>
+<li>massage</li>
+<li>warning</li>
+<li>error</li>
+</ul>
+
+<h4>sourcecode 출력 option</h4>
+
+<ul>
+<li><code>echo=TRUE</code></li>
+</ul>
+
+<p>현재의 소스코드를 출력한다.<br/>
+<code>echo=c(3, 5)</code> : 3번과 5번줄만 출력한다. </p>
+
+<ul>
+<li><code>prompt=FALSE</code></li>
+</ul>
+
+<p>프롬프트(&gt;)를 출력하지 않는다.</p>
+
+<ul>
+<li><code>tidy=TRUE</code></li>
+</ul>
+
+<p>R 코드가 정리되어 출력되도록 한다.</p>
+
+<ul>
+<li><code>highlight=TRUE</code></li>
+</ul>
+
+<p>구문 강조가 된 코드를 출력되게 한다.</p>
+
+<ul>
+<li><code>background=&#39;#F7F7F7&#39;</code></li>
+</ul>
+
+<p>레이텍 출력에서 코드 청크의 배경색을 정한다.</p>
+
+<ul>
+<li><code>size=&#39;normalsize&#39;</code></li>
+</ul>
+
+<p>레이텍 출력에서 코드 청크의 폰트 사이즈를 정한다. </p>
+
+<h4>text 출력(sourcecode의 결과물) 옵션</h4>
+
+<ul>
+<li><code>comment=&#39;##&#39;</code></li>
+</ul>
+
+<p>결과값 앞에 ##를 붙여 sourcecode와 구분한다.<br/>
+<code>comment=NA</code>로 하면 ##를 붙이지 않고 출력한다. </p>
+
+<ul>
+<li><code>result=&#39;markup&#39;</code></li>
+</ul>
+
+<p>마크업 언어의 형태로 변환해 내보낸다.<br/>
+<code>result=&#39;asis&#39;</code> : 있는 그대로 다름 단계로 넘긴다.
+<code>result=&#39;hide&#39;</code> : 결과 자체를 출력하지 않는다.</p>
 
 </body>
 

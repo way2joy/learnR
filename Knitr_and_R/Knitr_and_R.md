@@ -24,22 +24,41 @@ options(rstudio.markdownToHTML = function(inputFile, outputFile) {
 ```
 
 
+표 만들기
+
+```r
+library("knitr")
+kable(head(iris), format = "latex")
+```
+
+```
+## 
+## \begin{tabular}{r|r|r|r|l}
+## \hline
+## Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+## \hline
+## 5.1 & 3.5 & 1.4 & 0.2 & setosa\\
+## \hline
+## 4.9 & 3.0 & 1.4 & 0.2 & setosa\\
+## \hline
+## 4.7 & 3.2 & 1.3 & 0.2 & setosa\\
+## \hline
+## 4.6 & 3.1 & 1.5 & 0.2 & setosa\\
+## \hline
+## 5.0 & 3.6 & 1.4 & 0.2 & setosa\\
+## \hline
+## 5.4 & 3.9 & 1.7 & 0.4 & setosa\\
+## \hline
+## \end{tabular}
+```
+
+
 knitr option
 ----------------------------------------------------
 
-code chunk 출력물 6가지
+### 6.2 일반옵션
 
-- source code
-- graph(plot)
-- text
-- massage
-- warning
-- error
-
-
-### 일반옵션
-
-#### `cache=FALSE`
+#### 6.2.1 `cache=FALSE`
 
 처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)
 
@@ -48,15 +67,15 @@ code chunk 출력물 6가지
 `eval=c(1,5)` : 1, 5 line code만 실행  
 `eval=-c(1,5)` : 1, 5 line code 빼고 실행
 
-#### `eval=TRUE`
+#### 6.2.2 `eval=TRUE`
 
 코드를 실행할지 여부
 
-#### `include=TRUE`
+#### 6.2.3 `include=TRUE`
 
 청크 결과물을 변환될 md, HTML 파일에 포함시킬지 여부
 
-#### `label=""`
+#### 6.2.4 `label=""`
 
 개별 코드 청크의 이름을 부여함
 
@@ -76,13 +95,55 @@ a <- c(1, 2, 3, 4)
 ```
 
 
-### 출력물 옵션
+### 6.3 출력물 옵션
 
-### fig
+code chunk 출력물 6가지
 
-fig.width=7
-fig.height=5
+- source code
+- graph(plot)
+- text
+- massage
+- warning
+- error
 
+#### sourcecode 출력 option 
 
+* `echo=TRUE`
+
+현재의 소스코드를 출력한다.  
+`echo=c(3, 5)` : 3번과 5번줄만 출력한다. 
+
+* `prompt=FALSE`
+
+프롬프트(>)를 출력하지 않는다.
+
+* `tidy=TRUE`
+
+R 코드가 정리되어 출력되도록 한다.
+
+* `highlight=TRUE`
+
+구문 강조가 된 코드를 출력되게 한다.
+
+* `background='#F7F7F7'`
+
+레이텍 출력에서 코드 청크의 배경색을 정한다.
+
+* `size='normalsize'`
+
+레이텍 출력에서 코드 청크의 폰트 사이즈를 정한다. 
+
+#### text 출력(sourcecode의 결과물) 옵션
+
+* `comment='##'`
+
+결과값 앞에 ##를 붙여 sourcecode와 구분한다.  
+`comment=NA`로 하면 ##를 붙이지 않고 출력한다. 
+
+* `result='markup'`
+
+마크업 언어의 형태로 변환해 내보낸다.  
+`result='asis'` : 있는 그대로 다름 단계로 넘긴다.
+`result='hide'` : 결과 자체를 출력하지 않는다.
 
 
