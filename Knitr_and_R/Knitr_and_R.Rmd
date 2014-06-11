@@ -44,7 +44,7 @@ knitr option
 
 ### `include=TRUE`
 
-청크 결과물을 파일에 포함시킬지 여부
+청크 결과물을 변환될 md, HTML 파일에 포함시킬지 여부
 
 ### `label=""`
 
