@@ -28,6 +28,7 @@ options(rstudio.markdownToHTML =
 
 knitr option
 ----------------------------------------------------
+
 - `cache=FALSE` : 처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)
 
 - `eval=TRUE` : 코드를 실행할지 여부
