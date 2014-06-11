@@ -118,7 +118,7 @@ R 코드가 정리되어 출력되도록 한다.
 `results='asis'` : 있는 그대로 다름 단계로 넘긴다.
 `results='hide'` : 결과 자체를 출력하지 않는다.
 
-표 만들기의 예에서, R 코드 실행 결과가 MD으로 바뀌어 HTML로 넘어가기 때문에 결과가 문자열로 출력된다. 
+표 만들기의 예에서, R 코드 실행 결과가 MD으로 바뀌어 HTML로 넘어가기 때문에 결과가 문자열로 출력된다. (R -> MD -> HTML)
 
 
 ```r
@@ -138,9 +138,25 @@ kable(head(iris))
 ## |           5.4|          3.9|           1.7|          0.4|setosa   |
 ```
 
+
+`results='asis'`로 하면 R 코드 실행 결과를 MD로 바뀌지 않고 그대로 MD라고 여기고 넘기기 때문에 MD -> HTML로 표를 그려 보여준다.
+
+|  Sepal.Length|  Sepal.Width|  Petal.Length|  Petal.Width|Species  |
+|-------------:|------------:|-------------:|------------:|:--------|
+|           5.1|          3.5|           1.4|          0.2|setosa   |
+|           4.9|          3.0|           1.4|          0.2|setosa   |
+|           4.7|          3.2|           1.3|          0.2|setosa   |
+|           4.6|          3.1|           1.5|          0.2|setosa   |
+|           5.0|          3.6|           1.4|          0.2|setosa   |
+|           5.4|          3.9|           1.7|          0.4|setosa   |
+
+
+HTML의 경우도 그러하다. 
+
+
 ```r
 # kable(head(iris), format='html')
-kable(head(iris), format = "html")
+kable(head(iris, 3), format = "html")
 ```
 
 ```
@@ -176,42 +192,11 @@ kable(head(iris), format = "html")
 ##    <td> 0.2 </td>
 ##    <td> setosa </td>
 ##   </tr>
-##   <tr>
-##    <td> 4.6 </td>
-##    <td> 3.1 </td>
-##    <td> 1.5 </td>
-##    <td> 0.2 </td>
-##    <td> setosa </td>
-##   </tr>
-##   <tr>
-##    <td> 5.0 </td>
-##    <td> 3.6 </td>
-##    <td> 1.4 </td>
-##    <td> 0.2 </td>
-##    <td> setosa </td>
-##   </tr>
-##   <tr>
-##    <td> 5.4 </td>
-##    <td> 3.9 </td>
-##    <td> 1.7 </td>
-##    <td> 0.4 </td>
-##    <td> setosa </td>
-##   </tr>
 ## </tbody>
 ## </table>
 ```
 
 
-`results='asis'`로 하면 R 코드 실행 결과를 MD로 바뀌지 않고 그대로 넘기기 때문에 HTML에서 표를 그려 보여준다.
-
-|  Sepal.Length|  Sepal.Width|  Petal.Length|  Petal.Width|Species  |
-|-------------:|------------:|-------------:|------------:|:--------|
-|           5.1|          3.5|           1.4|          0.2|setosa   |
-|           4.9|          3.0|           1.4|          0.2|setosa   |
-|           4.7|          3.2|           1.3|          0.2|setosa   |
-|           4.6|          3.1|           1.5|          0.2|setosa   |
-|           5.0|          3.6|           1.4|          0.2|setosa   |
-|           5.4|          3.9|           1.7|          0.4|setosa   |
 <table>
  <thead>
   <tr>
@@ -244,29 +229,6 @@ kable(head(iris), format = "html")
    <td> 0.2 </td>
    <td> setosa </td>
   </tr>
-  <tr>
-   <td> 4.6 </td>
-   <td> 3.1 </td>
-   <td> 1.5 </td>
-   <td> 0.2 </td>
-   <td> setosa </td>
-  </tr>
-  <tr>
-   <td> 5.0 </td>
-   <td> 3.6 </td>
-   <td> 1.4 </td>
-   <td> 0.2 </td>
-   <td> setosa </td>
-  </tr>
-  <tr>
-   <td> 5.4 </td>
-   <td> 3.9 </td>
-   <td> 1.7 </td>
-   <td> 0.4 </td>
-   <td> setosa </td>
-  </tr>
 </tbody>
 </table>
-
-
 
