@@ -1,1062 +1,180 @@
 <!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
 
-<title>+/- </title>
-
-
-
-
+<title>5.4.3 knitrBootstrap 스타일링</title>
 
 <style type="text/css">
-
-</style>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
-<!-- highlight.js -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/default.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/highlight.min.js"></script>
-<script src="https://yandex.st/highlightjs/7.3/languages/r.min.js"></script>
-
-<!-- bootstrap -->
-<link href=https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css rel="stylesheet">
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
-<!-- Manific Popup -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/0.8.9/jquery.magnific-popup.min.js"></script>
-
-<script defer="defer">
-// Function to generate the dynamic table of contents
-jQuery.fn.generate_TOC = function () {
-  var base = $(this[0]);
-
-  var selectors = ['h1', 'h2', 'h3', 'h4'];
-
-  var last_ptr = [{}, {}, {}, {}];
-
-  var anchors = {};
-
-  generate_anchor = function (text) {
-    var test = text.replace(/\W/g, '_');
-
-    while(test in anchors){
-      //if no suffix, add one
-      if(test.match(/_\d+$/) === null){
-        test = test + "_2";
-      }
-      //else generate unique id for duplicates by adding one to the suffix
-      else {
-        test = test.replace(/_(\d+)$/, function(match, number){ var num=+number+1; return("_" + num) });
-      }
-    }
-    anchors[test]=1;
-    return(test);
-  }
-
-  $(selectors.join(',')).each(function () {
-    var heading = $(this);
-    var idx = selectors.indexOf(heading.prop('tagName').toLowerCase());
-    var itr = 0;
-
-    while (itr <= idx) {
-      if (jQuery.isEmptyObject(last_ptr[itr])) {
-        last_ptr[itr] = $('<ul>').addClass('nav');
-        if (itr === 0) {
-          base.append(last_ptr[itr])
-        } else {
-          if(last_ptr[itr-1].children('li').length === 0){
-            last_ptr[itr-1].append(last_ptr[itr]);
-          }
-          else {
-            last_ptr[itr - 1].children('li').last().append(last_ptr[itr]);
-          }
-        }
-      }
-      itr++;
-    }
-    var anchor = generate_anchor(heading.text());
-    heading.attr('id', anchor);
-    var a = $('<a>')
-    .text(heading.text())
-    .attr('href', '#' + anchor);
-
-  var li = $('<li>')
-    .append(a);
-
-  last_ptr[idx].append(li);
-  for (i = idx + 1; i < last_ptr.length; i++) {
-    last_ptr[i] = {};
-  }
-  });
-}
-/* run scripts when document is ready */
-$(function() {
-  "use strict";
-
-  var $window = $(window);
-  var $body = $(document.body);
-
-  document.title = $('h1').first().text();
-
-  /* size of thumbnails */
-  var thumbsize = "col-md-6";
-
-  var show_code =  false ;
-
-  var show_output =  true ;
-
-  var show_figure =  true ;
-
-  /* included languages */
-  var languages = [];
-
-  /* Using render_html, so add in code block */
-  $('pre.knitr').each(function(){
-    $(this).removeClass('knitr');
-    if($(this).find('code').length < 1){
-      $(this).wrapInner('<code class=' + $(this).attr('class') + '></code>');
-    }
-  });
-
-  /* style tables */
-  $('table').addClass('table table-striped table-bordered table-hover table-condensed');
-
-  /* add toggle panel to rcode blocks */
-  $('div.source,div.output,div.message,div.warning,div.error').each(function() {
-    var button = $('<h5 class="panel-title">+/- </h5>');
-
-    if($(this).hasClass('source')){
-      var code_block = $(this).find('code');
-      var lang_type = code_block.attr('class');
-      button.text(button.text() + lang_type + ' Code');
-      button.addClass('source ' + lang_type);
-      languages[lang_type]=0;
-      code_block.each(function(i, e) {
-        hljs.highlightBlock(e);
-      });
-      $(this).addClass('panel panel-primary ' + lang_type);
-    }
-    else if($(this).hasClass('output')){
-      button.text(button.text() + 'Output');
-      button.addClass('output');
-      $(this).addClass('panel panel-success');
-    }
-    else if($(this).hasClass('message')){
-      button.text(button.text() + 'Message');
-      button.addClass('message');
-      $(this).addClass('panel panel-info');
-    }
-    else if($(this).hasClass('warning')){
-      button.text(button.text() + 'Warning');
-      button.addClass('warning');
-      $(this).addClass('panel panel-warning');
-    }
-    else if($(this).hasClass('error')){
-      button.text(button.text() + 'Error');
-      button.addClass('error');
-      $(this).addClass('panel panel-danger');
-    }
-    else {
-      //console.log($(this));
-    }
-    $(this).prepend($('<div class="panel-heading toggle" />').append(button));
-  });
-
-  /* give images a lightbox and thumbnail classes to allow lightbox and thumbnails TODO: make gallery if graphs are grouped */
-  $('div.rimage img').each(function(){
-
-    //remove rimage div
-    $(this).unwrap();
-
-    var a = $(this).
-      wrap('<a href=# class="media-object pull-left mfp-image thumbnail ' + thumbsize + '"></a>').
-      parent();
-
-    var sibs = a.prevUntil('div.rimage,div.media');
-    var div = $('<div class="media" />');
-    if(sibs.length != 0){
-      sibs.addClass('media-body');
-      //need to reverse order as prevUntil puts objects in the order it found them
-      $(sibs.get().reverse()).wrapAll(div).parent().prepend(a);
-    }
-    else {
-      a.wrap(div);
-    }
-  });
-
-  $('div.chunk').addClass('media');
-
-  $('.rcode > .panel').addClass('media');
-  /* Magnific Popup */
-  $(".thumbnail").each(function(){
-    $(this).magnificPopup({
-      disableOn: 768,
-      closeOnContentClick: true,
-
-      type: 'image',
-      items: {
-        src: $(this).find('img').attr('src'),
-      }
-    });
-  });
-
-  /* add bootstrap classes */
-  $('body').wrapInner('<div class="container"><div class="row"><div class="contents">');
-
-  var create_language_links = function(){
-    var text='';
-    var language;
-    for(language in languages){
-      if(languages.hasOwnProperty(language)){
-        text += '<li><a href=# class="toggle-global source ' + language + '" type="source.' + language + '">' + language + '</a></li>\n';
-      }
-    }
-    return text;
-  }
-
-  var navbar =
-  '<div class="navbar navbar-fixed-bottom navbar-inverse">\
-    <div class="container">\
-      <div class="navbar-header">\
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">\
-          <span class="icon-bar"></span>\
-          <span class="icon-bar"></span>\
-          <span class="icon-bar"></span>\
-        </button>\
-      </div>\
-      <div id="bottom-navbar" class="navbar-collapse collapse navbar-responsive-collapse">\
-        <ul class="nav navbar-nav navbar-right">\
-          <li class="nav"><p class="navbar-text">Toggle</p></li>\
-          <li class="dropup">\
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code <b class="caret"></b></a>\
-            <ul class="dropdown-menu">\
-              <li class="dropdown-header">Languages</li>'
-              + create_language_links() +
-              '<li><a href="#" type="all-source" class="toggle-global">All</a></li>\
-            </ul>\
-          </li>\
-          <li class="dropup">\
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Output <b class="caret"></b></a>\
-            <ul class="dropdown-menu">\
-              <li class="dropdown-header">Type</li>\
-                <li><a href="#" type="output" class="toggle-global">Output</a></li>\
-                <li><a href="#" type="message" class="toggle-global">Message</a></li>\
-                <li><a href="#" type="warning" class="toggle-global">Warning</a></li>\
-                <li><a href="#" type="error" class="toggle-global">Error</a></li>\
-                <li><a href="#" type="all-output" class="toggle-global">All</a></li>\
-            </ul>\
-          </li>\
-          <li><a href="#" class="toggle-figure">Figures</a></li>\
-        </ul>\
-      </div><!-- /.nav-collapse -->\
-    </div><!-- /.container -->\
-  </div>';
-  /* add navbar */
-  $('.container').append(navbar);
-
-  /* onclick toggle next code block */
-  $('.toggle').click(function() {
-    $(this).next('pre').slideToggle();
-    return false;
-  });
-
-  // global toggles
-  $('.toggle-global').click(function(){
-    var type = $(this).attr('type');
-    if(type == 'all-source'){
-      for(var language in languages){
-        $('li a[type="source.' + language + '"]').click();
-      }
-    }
-    if(type == 'all-output'){
-      $('li a[type=output], li a[type=message], li a[type=warning], li a[type=error]').click();
-    }
-    else {
-      if($(this).closest('li').hasClass('active')){
-        $('div.' + type).children('pre').slideUp();
-      }
-      else {
-        $('div.' + type).children('pre').slideDown();
-      }
-    }
-    $(this).closest('li').toggleClass('active');
-    return false;
-  });
-  // global toggles figure, this is more complicated than just slideToggle because you have to hide the parent div as well
-  $('.toggle-figure').click(function(){
-    var imgs = $('.thumbnail img');
-    if(imgs.is(":visible")){
-      imgs.slideUp(400, function(){ $(this).parent().toggle(); });
-    }
-    else {
-      imgs.parent().show();
-      imgs.show();
-    }
-    $(this).closest('li').toggleClass('active');
-    return false;
-  });
-
-  /* add footer */
-  $('body').wrapInner('<div id="wrap" />');
-  $('#wrap').append('<div id="push" />');
-  var p = $('p:contains("Author:")');
-  var last_p = p.filter(':last');
-  last_p.addClass('text-muted').attr('id','credit');
-  last_p.append('<p>Styled with <a href="https://github.com/jimhester/knitrBootstrap">knitrBootstrap</a></p>');
-  last_p = last_p.wrap('<div id="footer"><div class="container">').parent().parent();
-  last_p.appendTo("body");
-
-  $('.container > .row').prepend('<div class="col-md-3"><div id="toc" class="well sidebar sidenav affix hidden-print"/></div>');
-
-  $('.contents').addClass('col-md-offset-3');
-
-  /* table of contents */
-  $('#toc').generate_TOC();
-
-  if(show_code){
-    /* toggle source buttons pressed */
-    $('a.toggle-global.source').closest('li').addClass('active');
-  }
-  else {
-    /* hide code blocks */
-    $('div.source pre').hide();
-  }
-
-  if(show_output){
-    /* toggle output buttons pressed */
-    $('li a[type=output], li a[type=message], li a[type=warning], li a[type=error], li a[type=all-output]').closest('li').addClass('active');
-  }
-  else {
-    /* hide output blocks */
-    $('div.output pre').hide();
-  }
-
-  if(show_figure){
-    /* toggle figure button pressed */
-    $('li a.toggle-figure').closest('li').addClass('active');
-  }
-  else {
-    /* hide figures */
-    $('.thumbnail').hide();
-  }
-
-  /* remove paragraphs with no content */
-  $('p:empty').remove();
-
-  $body.scrollspy({
-    target: '.sidebar',
-  });
-
-
-  //TODO refresh on show/hide
-  $window.on('load', function () {
-    $body.scrollspy('refresh');
-  })
-
-});
-
-
-</script>
-<style>
-/* Knitr_bootstrap styles */
-#wrap .container-fluid {
-  padding: 0;
-  overflow: hidden;
-}
-.toggle{
-  text-transform: capitalize;
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
 }
 
-.toggle-global{
-  text-transform: capitalize;
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
 }
 
-/* Sticky footer styles */
-* {
-  margin:0;
-}
-html,
-body {
-    height: 100%;
-    padding:0 !important;
-    /* The html and body elements cannot have any padding or margin. */
-    /*overflow-x: hidden;*/
+h1 { 
+   font-size:2.2em; 
 }
 
-/* Wrapper for page content to push down footer */
-#wrap {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    /* Negative indent footer by it's height */
-    margin: 0 auto -120px;
+h2 { 
+   font-size:1.8em; 
 }
 
-/* Set the fixed height of the footer here */
-#push,
-#footer {
-    height: 120px;
+h3 { 
+   font-size:1.4em; 
 }
 
-#footer {
-  text-align: center;
+h4 { 
+   font-size:1.0em; 
 }
 
-/* Top level subheader elements.  These are the first nested items underneath a header element. */
-.header li {
-  font-size: 20px;
+h5 { 
+   font-size:0.9em; 
 }
 
-/* Makes the font smaller for all subheader elements. */
-.sub-header li {
-    font-size: 12px;
+h6 { 
+   font-size:0.8em; 
 }
 
-button.thumbnails {
-  margin-left:0px;
+a:visited {
+   color: rgb(50%, 0%, 50%);
 }
 
-/*
- * Side navigation
- *
- * Scrollspy and affixed enhanced navigation to highlight sections and secondary
- * sections of docs content.
- */
-
-/* By default it's not affixed in mobile views, so undo that */
-.sidebar.affix {
-  position: static;
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
 }
 
-/* First level of nav */
-.sidenav {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding-top:    10px;
-  padding-bottom: 10px;
-  border-radius: 5px;
+pre code {
+   display: block; padding: 0.5em;
 }
 
-/* All levels of nav */
-.sidebar .nav > li > a {
-  display: block;
-  padding: 5px 20px;
-}
-.sidebar .nav > li > a:hover,
-.sidebar .nav > li > a:focus {
-  text-decoration: none;
-  border-right: 1px solid;
-}
-.sidebar .nav > .active > a,
-.sidebar .nav > .active:hover > a,
-.sidebar .nav > .active:focus > a {
-  font-weight: bold;
-  background-color: transparent;
-  border-right: 1px solid;
+code.r, code.cpp {
+   background-color: #F8F8F8;
 }
 
-/* Nav: second level (shown on .active) */
-.sidebar .nav .nav {
-  display: none; /* Hide by default, but at >768px, show it */
-  margin-bottom: 8px;
-}
-.sidebar .nav .nav > li > a {
-  padding-top:    3px;
-  padding-bottom: 3px;
-  padding-left: 30px;
-  font-size: 90%;
+table, td, th {
+  border: none;
 }
 
-.sidebar .nav .nav .nav > li > a {
-  padding-left: 40px;
-}
-.sidebar .nav .nav .nav .nav > li > a {
-  padding-left: 50px;
-}
-
-/* Show and affix the side nav when space allows it */
-@media screen and (min-width: 992px) {
-  .sidebar .nav > .active > ul {
-    display: block;
-  }
-  /* Widen the fixed sidebar */
-  .sidebar.affix,
-  .sidebar.affix-bottom {
-    width: 213px;
-  }
-  .sidebar.affix-top,
-  .sidebar.affix {
-    position: fixed; /* Undo the static from mobile first approach */
-    top: 30px;
-  }
-  .sidebar.affix-bottom {
-    position: absolute; /* Undo the static from mobile first approach */
-  }
-  .sidebar.affix-bottom .sidenav,
-  .sidebar.affix .sidenav {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
-@media screen and (min-width: 1200px) {
-  /* Widen the fixed sidebar again */
-  .sidebar.affix-bottom,
-  .sidebar.affix {
-    width: 263px;
-  }
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
 }
 
-#toc {
-  padding: 10px 0px;
-  margin:0;
-  border:0;
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
 }
 
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
 
-.panel pre {
-  border-radius: 0;
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-.panel pre code {
-  border-radius: 0;
-}
-/* Magnific Popup CSS */
-.mfp-bg {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1042;
-  overflow: hidden;
-  position: fixed;
-  background: #0b0b0b;
-  opacity: 0.8;
-  filter: alpha(opacity=80); }
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
 
-.mfp-wrap {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1043;
-  position: fixed;
-  outline: none !important;
-  -webkit-backface-visibility: hidden; }
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
 
-.mfp-container {
-  text-align: center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  padding: 0 8px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
 
-.mfp-container:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle; }
+   tr, img { 
+      page-break-inside: avoid; 
+   }
 
-.mfp-align-top .mfp-container:before {
-  display: none; }
+   img { 
+      max-width: 100% !important; 
+   }
 
-.mfp-content {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 auto;
-  text-align: left;
-  z-index: 1045; }
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
 
-.mfp-inline-holder .mfp-content,
-.mfp-ajax-holder .mfp-content {
-  width: 100%;
-  cursor: auto; }
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
 
-.mfp-ajax-cur {
-  cursor: progress; }
-
-.mfp-zoom-out-cur,
-.mfp-zoom-out-cur .mfp-image-holder .mfp-close {
-  cursor: -moz-zoom-out;
-  cursor: -webkit-zoom-out;
-  cursor: zoom-out; }
-
-.mfp-zoom {
-  cursor: pointer;
-  cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in;
-  cursor: zoom-in; }
-
-.mfp-auto-cursor .mfp-content {
-  cursor: auto; }
-
-.mfp-close,
-.mfp-arrow,
-.mfp-preloader,
-.mfp-counter {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none; }
-
-.mfp-loading.mfp-figure {
-  display: none; }
-
-.mfp-hide {
-  display: none !important; }
-
-.mfp-preloader {
-  color: #cccccc;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  text-align: center;
-  margin-top: -0.8em;
-  left: 8px;
-  right: 8px;
-  z-index: 1044; }
-
-.mfp-preloader a {
-  color: #cccccc; }
-
-.mfp-preloader a:hover {
-  color: white; }
-
-.mfp-s-ready .mfp-preloader {
-  display: none; }
-
-.mfp-s-error .mfp-content {
-  display: none; }
-
-button.mfp-close,
-button.mfp-arrow {
-  overflow: visible;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  -webkit-appearance: none;
-  display: block;
-  padding: 0;
-  z-index: 1046;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
-
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0; }
-
-.mfp-close {
-  width: 44px;
-  height: 44px;
-  line-height: 44px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  text-decoration: none;
-  text-align: center;
-  opacity: 0.65;
-  padding: 0 0 18px 10px;
-  color: white;
-  font-style: normal;
-  font-size: 28px;
-  font-family: Arial, Baskerville, monospace; }
-  .mfp-close:hover, .mfp-close:focus {
-    opacity: 1; }
-  .mfp-close:active {
-    top: 1px; }
-
-.mfp-close-btn-in .mfp-close {
-  color: #333333; }
-
-.mfp-image-holder .mfp-close,
-.mfp-iframe-holder .mfp-close {
-  color: white;
-  right: -6px;
-  text-align: right;
-  padding-right: 6px;
-  width: 100%; }
-
-.mfp-counter {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: #cccccc;
-  font-size: 12px;
-  line-height: 18px; }
-
-.mfp-arrow {
-  position: absolute;
-  opacity: 0.65;
-  margin: 0;
-  top: 50%;
-  margin-top: -55px;
-  padding: 0;
-  width: 90px;
-  height: 110px;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
-
-.mfp-arrow:active {
-  margin-top: -54px; }
-
-.mfp-arrow:hover,
-.mfp-arrow:focus {
-  opacity: 1; }
-
-.mfp-arrow:before, .mfp-arrow:after,
-.mfp-arrow .mfp-b,
-.mfp-arrow .mfp-a {
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin-top: 35px;
-  margin-left: 35px;
-  border: medium inset transparent; }
-.mfp-arrow:after,
-.mfp-arrow .mfp-a {
-  border-top-width: 13px;
-  border-bottom-width: 13px;
-  top: 8px; }
-.mfp-arrow:before,
-.mfp-arrow .mfp-b {
-  border-top-width: 21px;
-  border-bottom-width: 21px; }
-
-.mfp-arrow-left {
-  left: 0; }
-  .mfp-arrow-left:after,
-  .mfp-arrow-left .mfp-a {
-    border-right: 17px solid white;
-    margin-left: 31px; }
-  .mfp-arrow-left:before,
-  .mfp-arrow-left .mfp-b {
-    margin-left: 25px;
-    border-right: 27px solid #3f3f3f; }
-
-.mfp-arrow-right {
-  right: 0; }
-  .mfp-arrow-right:after,
-  .mfp-arrow-right .mfp-a {
-    border-left: 17px solid white;
-    margin-left: 39px; }
-  .mfp-arrow-right:before,
-  .mfp-arrow-right .mfp-b {
-    border-left: 27px solid #3f3f3f; }
-
-.mfp-iframe-holder {
-  padding-top: 40px;
-  padding-bottom: 40px; }
-
-.mfp-iframe-holder .mfp-content {
-  line-height: 0;
-  width: 100%;
-  max-width: 900px; }
-
-.mfp-iframe-scaler {
-  width: 100%;
-  height: 0;
-  overflow: hidden;
-  padding-top: 56.25%; }
-
-.mfp-iframe-scaler iframe {
-  position: absolute;
-  display: block;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-  background: black; }
-
-.mfp-iframe-holder .mfp-close {
-  top: -40px; }
-
-/* Main image in popup */
-img.mfp-img {
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  line-height: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 40px 0 40px;
-  margin: 0 auto; }
-
-/* The shadow behind the image */
-.mfp-figure:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 40px;
-  bottom: 40px;
-  display: block;
-  right: 0;
-  width: auto;
-  height: auto;
-  z-index: -1;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-  background: #444444; }
-
-.mfp-figure {
-  line-height: 0; }
-
-.mfp-bottom-bar {
-  margin-top: -36px;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  cursor: auto; }
-
-.mfp-title {
-  text-align: left;
-  line-height: 18px;
-  color: #f3f3f3;
-  word-wrap: break-word;
-  padding-right: 36px; }
-
-.mfp-figure small {
-  color: #bdbdbd;
-  display: block;
-  font-size: 12px;
-  line-height: 14px; }
-
-.mfp-image-holder .mfp-content {
-  max-width: 100%; }
-
-.mfp-gallery .mfp-image-holder .mfp-figure {
-  cursor: pointer; }
-
-@media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
-  /**
-   * Remove all paddings around the image on small screen
-   */
-  .mfp-img-mobile .mfp-image-holder {
-    padding-left: 0;
-    padding-right: 0; }
-
-  .mfp-img-mobile img.mfp-img {
-    padding: 0; }
-
-  /* The shadow behind the image */
-  .mfp-img-mobile .mfp-figure:after {
-    top: 0;
-    bottom: 0; }
-
-  .mfp-img-mobile .mfp-bottom-bar {
-    background: rgba(0, 0, 0, 0.6);
-    bottom: 0;
-    margin: 0;
-    top: auto;
-    padding: 3px 5px;
-    position: fixed;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box; }
-
-  .mfp-img-mobile .mfp-bottom-bar:empty {
-    padding: 0; }
-
-  .mfp-img-mobile .mfp-counter {
-    right: 5px;
-    top: 3px; }
-
-  .mfp-img-mobile .mfp-close {
-    top: 0;
-    right: 0;
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    background: rgba(0, 0, 0, 0.6);
-    position: fixed;
-    text-align: center;
-    padding: 0; }
-
-  .mfp-img-mobile .mfp-figure small {
-    display: inline;
-    margin-left: 5px; } }
-@media all and (max-width: 900px) {
-  .mfp-arrow {
-    -webkit-transform: scale(0.75);
-    transform: scale(0.75); }
-
-  .mfp-arrow-left {
-    -webkit-transform-origin: 0;
-    transform-origin: 0; }
-
-  .mfp-arrow-right {
-    -webkit-transform-origin: 100%;
-    transform-origin: 100%; }
-
-  .mfp-container {
-    padding-left: 6px;
-    padding-right: 6px; } }
-.mfp-ie7 .mfp-img {
-  padding: 0; }
-.mfp-ie7 .mfp-bottom-bar {
-  width: 600px;
-  left: 50%;
-  margin-left: -300px;
-  margin-top: 5px;
-  padding-bottom: 5px; }
-.mfp-ie7 .mfp-container {
-  padding: 0; }
-.mfp-ie7 .mfp-content {
-  padding-top: 44px; }
-.mfp-ie7 .mfp-close {
-  top: 0;
-  right: 0;
-  padding-top: 0; }
-
-//Magnific overrides
-.mfp-image img{
-  background: white;
-}
-.mfp-figure:after {
-  background: white;
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
 }
 
 </style>
-<link href=https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css rel="stylesheet" id='style'>
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" title="Default" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/amelia/bootstrap.min.css" title="Amelia" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/cerulean/bootstrap.min.css" title="Cerulean" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css" title="Cosmo" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/cyborg/bootstrap.min.css" title="Cyborg" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css" title="Flatly" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/journal/bootstrap.min.css" title="Journal" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/readable/bootstrap.min.css" title="Readable" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css" title="Simplex" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/slate/bootstrap.min.css" title="Slate" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css" title="Spacelab" media="screen">
-<link rel="alternate stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" title="United" media="screen">
 
-          <!--<li><a class="style-switch" title="Superhero" href="#" >Superhero</a>  </li> \-->
-          <!--<li><a class="style-switch" title="Spruce" href="#"    >Spruce</a>     </li> \-->
-<script>
-$(function() {
-    $('#bottom-navbar').append(
-    '<ul class="nav navbar-nav navbar-left">\
-      <li class="dropup">\
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bootstrap Style</a>\
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">\
-           <li class="active"><a class="style-switch" title="Default" href="#"   >Default</a></li> \
-           <li><a class="style-switch" title="Amelia" href="#"                   >Amelia</a></li> \
-           <li><a class="style-switch" title="Cerulean" href="#"                 >Cerulean</a></li> \
-           <li><a class="style-switch" title="Cosmo" href="#"                    >Cosmo</a></li> \
-           <li><a class="style-switch" title="Cyborg" href="#"                   >Cyborg</a></li> \
-           <li><a class="style-switch" title="Flatly" href="#"                   >Flatly</a></li> \
-           <li><a class="style-switch" title="Journal" href="#"                  >Journal</a></li> \
-           <li><a class="style-switch" title="Readable" href="#"                 >Readable</a></li> \
-           <li><a class="style-switch" title="Simplex" href="#"                  >Simplex</a></li> \
-           <li><a class="style-switch" title="Slate" href="#"                    >Slate</a></li> \
-           <li><a class="style-switch" title="Spacelab" href="#"                 >Spacelab</a></li> \
-           <li><a class="style-switch" title="United" href="#"                   >United</a></li> \
-        </ul>\
-      </li>\
-    </ul>');
-    $('.style-switch').click(function(){
-      var css = $('link[title=' + $(this).attr('title') + ']');
-      $('#style[rel=stylesheet]').attr('href', css.attr('href'));
-      $('.style-switch').closest('li').removeClass('active');
-      $(this).closest('li').addClass('active');
-      return false;
-    });
-  }
-);
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
 </script>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/default.min.css" id="code-style" rel="stylesheet">
-<link title="Default-Code" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/default.min.css" rel="alternate stylesheet">
-<link title="Dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/dark.min.css" rel="alternate stylesheet">
-<link title="FAR" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/far.min.css" rel="alternate stylesheet">
-<link title="IDEA" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/idea.min.css" rel="alternate stylesheet">
-<link title="Sunburst" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/sunburst.min.css" rel="alternate stylesheet">
-<link title="Zenburn" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/zenburn.min.css" rel="alternate stylesheet">
-<link title="Visual Studio" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/vs.min.css" rel="alternate stylesheet">
-<link title="Ascetic" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/ascetic.min.css" rel="alternate stylesheet">
-<link title="Magula" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/magula.min.css" rel="alternate stylesheet">
-<link title="GitHub" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/github.min.css" rel="alternate stylesheet">
-<link title="Google Code" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/googlecode.min.css" rel="alternate stylesheet">
-<link title="Brown Paper" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/brown_paper.min.css" rel="alternate stylesheet">
-<link title="School Book" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/school_book.min.css" rel="alternate stylesheet">
-<link title="IR Black" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/ir_black.min.css" rel="alternate stylesheet">
-<link title="Solarized - Dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/solarized_dark.min.css" rel="alternate stylesheet">
-<link title="Solarized - Light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/solarized_light.min.css" rel="alternate stylesheet">
-<link title="Arta" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/arta.min.css" rel="alternate stylesheet">
-<link title="Monokai" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/monokai.min.css" rel="alternate stylesheet">
-<link title="XCode" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/xcode.min.css" rel="alternate stylesheet">
-<link title="Pojoaque" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/pojoaque.min.css" rel="alternate stylesheet">
-<link title="Rainbow" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/rainbow.min.css" rel="alternate stylesheet">
-<link title="Tomorrow" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/tomorrow.min.css" rel="alternate stylesheet">
-<link title="Tomorrow Night" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/tomorrow-night.min.css" rel="alternate stylesheet">
-<link title="Tomorrow Night Bright" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/tomorrow-night-bright.min.css" rel="alternate stylesheet">
-<link title="Tomorrow Night Blue" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/tomorrow-night-blue.min.css" rel="alternate stylesheet">
-<link title="Tomorrow Night Eighties" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/tomorrow-night-eighties.min.css" rel="alternate stylesheet">
 
-<script>
-$(function() {
-    $('#bottom-navbar').append(
-    '<ul class="nav navbar-nav">\
-      <li class="dropdown">\
-        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">Code Style</a>\
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">\
-          <li class="active"><a class="code-style-switch" title="Default-Code" href="#">Default</a></li>\
-          <li><a class="code-style-switch" title="Dark" href="#"                       >Dark</a></li>\
-          <li><a class="code-style-switch" title="FAR" href="#"                        >FAR</a></li>\
-          <li><a class="code-style-switch" title="IDEA" href="#"                       >IDEA</a></li>\
-          <li><a class="code-style-switch" title="Sunburst" href="#"                   >Sunburst</a></li>\
-          <li><a class="code-style-switch" title="Zenburn" href="#"                    >Zenburn</a></li>\
-          <li><a class="code-style-switch" title="Visual Studio" href="#"              >Visual Studio</a></li>\
-          <li><a class="code-style-switch" title="Ascetic" href="#"                    >Ascetic</a></li>\
-          <li><a class="code-style-switch" title="Magula" href="#"                     >Magula</a></li>\
-          <li><a class="code-style-switch" title="GitHub" href="#"                     >GitHub</a></li>\
-          <li><a class="code-style-switch" title="Google Code" href="#"                >Google Code</a></li>\
-          <li><a class="code-style-switch" title="Brown Paper" href="#"                >Brown Paper</a></li>\
-          <li><a class="code-style-switch" title="School Book" href="#"                >School Book</a></li>\
-          <li><a class="code-style-switch" title="IR Black" href="#"                   >IR Black</a></li>\
-          <li><a class="code-style-switch" title="Solarized - Dark" href="#"           >Solarized - Dark</a></li>\
-          <li><a class="code-style-switch" title="Solarized - Light" href="#"          >Solarized - Light</a></li>\
-          <li><a class="code-style-switch" title="Arta" href="#"                       >Arta</a></li>\
-          <li><a class="code-style-switch" title="Monokai" href="#"                    >Monokai</a></li>\
-          <li><a class="code-style-switch" title="XCode" href="#"                      >XCode</a></li>\
-          <li><a class="code-style-switch" title="Pojoaque" href="#"                   >Pojoaque</a></li>\
-          <li><a class="code-style-switch" title="Rainbow" href="#"                    >Rainbow</a></li>\
-          <li><a class="code-style-switch" title="Tomorrow" href="#"                   >Tomorrow</a></li>\
-          <li><a class="code-style-switch" title="Tomorrow Night" href="#"             >Tomorrow Night</a></li>\
-          <li><a class="code-style-switch" title="Tomorrow Night Bright" href="#"      >Tomorrow Night Bright</a></li>\
-          <li><a class="code-style-switch" title="Tomorrow Night Blue" href="#"        >Tomorrow Night Blue</a></li>\
-          <li><a class="code-style-switch" title="Tomorrow Night Eighties" href="#"    >Tomorrow Night Eighties</a></li>\
-        </ul>\
-      </li>\
-    </ul>');
-    $('.code-style-switch').click(function(){
-      var css = $('link[title="' + $(this).attr('title') + '"]');
-      $('#code-style[rel=stylesheet]').attr('href', css.attr('href'));
-      $('.code-style-switch').closest('li').removeClass('active');
-      $(this).closest('li').addClass('active');
-      return false;
-    });
-});
-</script>
- 
+
 
 </head>
 
@@ -1066,19 +184,10 @@ $(function() {
 <h3>5.4.3 knitrBootstrap 스타일링</h3>
 
 <pre><code class="r">install.packages(&quot;knitrBootstrap&quot;)
+library(knitrBootstrap)
 </code></pre>
 
-<pre><code>## Installing package into &#39;/home/junho/R/i686-pc-linux-gnu-library/3.1&#39;
-## (as &#39;lib&#39; is unspecified)
-</code></pre>
-
-<pre><code>## Error: trying to use CRAN without setting a mirror
-</code></pre>
-
-<pre><code class="r">library(knitrBootstrap)
-</code></pre>
-
-<p>&quot;Knit HTML&quot;버튼과 연동되어 있는  markdownToHTML() 함수 행동 바꾸기</p>
+<p>&ldquo;Knit HTML&quot;버튼과 연동되어 있는  markdownToHTML() 함수 행동 바꾸기</p>
 
 <pre><code class="r">options(rstudio.markdownToHTML = function(inputFile, outputFile) {
     require(knitrBootstrap)
@@ -1087,11 +196,16 @@ $(function() {
 })
 </code></pre>
 
-<pre><code class="r">plot(cars)
-</code></pre>
+<p>knitr 옵션</p>
 
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3"/> </p>
+<ul>
+<li><p><code>cache=FALSE</code> : 처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)</p></li>
+<li><p><code>eval=TRUE</code> : 코드를 실행할지 여부</p></li>
+<li><p><code>include=TRUE</code> : 청크 결과물을 파일에 포함시킬지 여부</p></li>
+<li><p><code>label=&quot;&quot;</code> : 개별 코드 청크의 이름을 부여함</p></li>
+</ul>
 
 </body>
 
 </html>
+

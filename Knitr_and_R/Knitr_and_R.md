@@ -5,18 +5,6 @@ Title
 
 ```r
 install.packages("knitrBootstrap")
-```
-
-```
-## Installing package into '/home/junho/R/i686-pc-linux-gnu-library/3.1'
-## (as 'lib' is unspecified)
-```
-
-```
-## Error: trying to use CRAN without setting a mirror
-```
-
-```r
 library(knitrBootstrap)
 ```
 
@@ -32,12 +20,13 @@ options(rstudio.markdownToHTML = function(inputFile, outputFile) {
 ```
 
 
+knitr 옵션
 
+- `cache=FALSE` : 처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)
 
-```r
-plot(cars)
-```
+- `eval=TRUE` : 코드를 실행할지 여부
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+- `include=TRUE` : 청크 결과물을 파일에 포함시킬지 여부
 
+- `label=""` : 개별 코드 청크의 이름을 부여함
 
