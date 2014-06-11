@@ -146,3 +146,5 @@ kable(head(iris, 3), format="html")
 
 `error=TRUE`
 
+### 6.5 표 출력하기
+
