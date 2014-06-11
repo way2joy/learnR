@@ -50,5 +50,11 @@ knitr option
 
 개별 코드 청크의 이름을 부여함
 
+### fig
+
+fig.width=7
+fig.height=5
+
+
 
 
