@@ -192,5 +192,3 @@ kable(iris, 'html', table.attr='id="iris_table"')
   );
 </script>
 
-
-
