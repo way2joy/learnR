@@ -29,16 +29,6 @@ options(rstudio.markdownToHTML =
 knitr option
 ----------------------------------------------------
 
-code chunk 출력물 6가지
-
-- source code
-- graph(plot)
-- text
-- massage
-- warning
-- error
-
-
 ### 6.2 일반옵션
 
 #### 6.2.1 `cache=FALSE`
@@ -75,11 +65,14 @@ a <- c(1,2,3,4)
 
 ### 6.3 출력물 옵션
 
-### fig
+code chunk 출력물 6가지
 
-fig.width=7
-fig.height=5
+- source code
+- graph(plot)
+- text
+- massage
+- warning
+- error
 
-
-
+#### sourcecode option 
 
