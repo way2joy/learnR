@@ -155,6 +155,6 @@ kable(head(iris, 3), format="html")
 ```{r}
 library(knitr)
 kable(mtcars, 'html', table.attr='id="mtcars_table"')
-
 ```
+
 
