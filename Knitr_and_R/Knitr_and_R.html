@@ -1086,11 +1086,22 @@ library(knitrBootstrap)
 
 <p>처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)</p>
 
-<ul>
-<li><p><code>eval=TRUE</code> : 코드를 실행할지 여부</p></li>
-<li><p><code>include=TRUE</code> : 청크 결과물을 파일에 포함시킬지 여부</p></li>
-<li><p><code>label=&quot;&quot;</code> : 개별 코드 청크의 이름을 부여함</p></li>
-</ul>
+<h4>참고</h4>
+
+<p><code>eval=c(1,5)</code> : 1, 5 line code만 실행
+<code>eval=-c(1,5)</code> : 1, 5 line code 빼고 실행</p>
+
+<h3><code>eval=TRUE</code></h3>
+
+<p>코드를 실행할지 여부</p>
+
+<h3><code>include=TRUE</code></h3>
+
+<p>청크 결과물을 파일에 포함시킬지 여부</p>
+
+<h3><code>label=&quot;&quot;</code></h3>
+
+<p>개별 코드 청크의 이름을 부여함</p>
 
 </body>
 
