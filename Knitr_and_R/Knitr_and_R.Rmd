@@ -76,20 +76,26 @@ code chunk 출력물 6가지
 
 #### sourcecode option 
 
-`echo=TRUE`
+* `echo=TRUE`
 
 현재의 소스코드를 출력한다.  
 `echo=c(3, 5)` : 3번과 5번줄만 출력한다. 
 
-`prompt=FALSE`
+* `prompt=FALSE`
+
 프롬프트(>)를 출력하지 않는다.
 
-`tidy=TRUE`
+* `tidy=TRUE`
+
 R 코드가 정리되어 출력되도록 한다.
 
-`highlight=TRUE`
+* `highlight=TRUE`
+
 구문 강조가 된 코드를 출력되게 한다.
 
-`background='#F7F7F7'`
+* `background='#F7F7F7'`
+
 레이텍 출력에서 코드 청크의 배경색을 정한다.
+
+* `size='normalsize'`
 
