@@ -1,4 +1,6 @@
-Title
+#Knitr
+
+## knitr 소개
 
 ### 5.4.3 knitrBootstrap 스타일링
 
@@ -20,7 +22,7 @@ options(rstudio.markdownToHTML = function(inputFile, outputFile) {
 ```
 
 
-knitr 옵션
+## knitr 옵션
 
 - `cache=FALSE` : 처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)
 
