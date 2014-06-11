@@ -2,7 +2,7 @@ Title
 
 ### 5.4.3 knitrBootstrap 스타일링
 
-```{r}
+```{r eval=TRUE}
 install.packages("knitrBootstrap")
 library(knitrBootstrap)
 ```
