@@ -170,13 +170,13 @@ options(markdown.HTML.header
 
 ```{r echo=FALSE, results='asis'}
 library(knitr)
-kable(mtcars, 'html', table.attr='id="mtcars_table"')
+kable(iris, 'html', table.attr='id="iris_table"')
 ```
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(
     function(){
-      $('#mtcars_table').dataTable();
+      $('#iris_table').dataTable();
     }
   );
 </script>
