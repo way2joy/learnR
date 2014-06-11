@@ -121,8 +121,6 @@ R 코드가 정리되어 출력되도록 한다.
 library("knitr")
 # kable(head(iris))
 kable(head(iris))
-# kable(head(iris), format="html")
-kable(head(iris), format="html")
 ```
 
 `results='asis'`로 하면 R 코드 실행 결과를 MD로 바뀌지 않고 그대로 넘기기 때문에 HTML에서 표를 그려 보여준다.
@@ -130,4 +128,10 @@ kable(head(iris), format="html")
 ```{r table_html, results='asis', echo=FALSE}
 ```
 
+HTML의 경우도 그러하다. 
+
+```{r table_html}
+# kable(head(iris), format="html")
+kable(head(iris), format="html")
+```
 
