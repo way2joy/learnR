@@ -148,3 +148,8 @@ kable(head(iris, 3), format="html")
 
 ### 6.5 표 출력하기
 
+* knitr에서 제공하는 kable() 함수를 이용하는 방법
+
+* xtable package를 이용하는 방법
+
+
