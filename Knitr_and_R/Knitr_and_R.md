@@ -50,6 +50,8 @@ knitr option
 
 코드를 재사용하는데 활용할 수 있다. (불러낼 때에는 코드 chunk에 아무것도 넣지 않는다.)
 
+`{r label="mycode"}`는 `{r mycode}`
+
 
 ```r
 a <- c(1, 2, 3, 4)
