@@ -1,7 +1,7 @@
 Knitr
 ====================================================
 
-## knitr 소개
+## knitr customize
 
 ### 5.4.3 knitrBootstrap 스타일링
 
