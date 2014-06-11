@@ -168,7 +168,7 @@ options(markdown.HTML.header
 ```
 
 
-```{r}
+```{r echo=FALSE, results='asis'}
 library(knitr)
 kable(mtcars, 'html', table.attr='id="mtcars_table"')
 ```
