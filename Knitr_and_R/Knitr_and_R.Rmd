@@ -84,3 +84,4 @@ tidy=TRUE
 
 highlight=TRUE
 
+background='#F7F7F7'
