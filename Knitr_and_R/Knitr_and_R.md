@@ -185,11 +185,62 @@ kable(head(iris), format = "html")
 
 
 `results='asis'`로 하면 R 코드 실행 결과를 MD로 바뀌지 않고 그대로 넘기기 때문에 HTML에서 표를 그려 보여준다.
+<table>
+ <thead>
+  <tr>
+   <th> Sepal.Length </th>
+   <th> Sepal.Width </th>
+   <th> Petal.Length </th>
+   <th> Petal.Width </th>
+   <th> Species </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td> 5.1 </td>
+   <td> 3.5 </td>
+   <td> 1.4 </td>
+   <td> 0.2 </td>
+   <td> setosa </td>
+  </tr>
+  <tr>
+   <td> 4.9 </td>
+   <td> 3.0 </td>
+   <td> 1.4 </td>
+   <td> 0.2 </td>
+   <td> setosa </td>
+  </tr>
+  <tr>
+   <td> 4.7 </td>
+   <td> 3.2 </td>
+   <td> 1.3 </td>
+   <td> 0.2 </td>
+   <td> setosa </td>
+  </tr>
+  <tr>
+   <td> 4.6 </td>
+   <td> 3.1 </td>
+   <td> 1.5 </td>
+   <td> 0.2 </td>
+   <td> setosa </td>
+  </tr>
+  <tr>
+   <td> 5.0 </td>
+   <td> 3.6 </td>
+   <td> 1.4 </td>
+   <td> 0.2 </td>
+   <td> setosa </td>
+  </tr>
+  <tr>
+   <td> 5.4 </td>
+   <td> 3.9 </td>
+   <td> 1.7 </td>
+   <td> 0.4 </td>
+   <td> setosa </td>
+  </tr>
+</tbody>
+</table>
 
-```r
-library("knitr")
-kable(head(iris), format = "html")
-```
 
 <table>
  <thead>
