@@ -12,10 +12,7 @@ library(knitrBootstrap)
 options(rstudio.markdownToHTML = 
           function(inputFile, outputFile){
             require(knitrBootstrap)
-            knit_bootstrap_md(input=inputFile, output=outputFile,
-                              chooser=c("boot", "code"),
-                              thumbsize=6
-          })
+            knit_bootstrap_md(input=inputFile, output=outputFile, chooser=c("boot", "code"), thumbsize=6)})
 ```
 
 ```{r fig.width=7, fig.height=6}
