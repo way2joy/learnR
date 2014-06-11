@@ -184,7 +184,6 @@ library(knitr)
 kable(iris, 'html', table.attr='id="iris_table"')
 ```
 
-
 <script type="text/javascript" charset="utf-8">
   $(document).ready(
     function(){
