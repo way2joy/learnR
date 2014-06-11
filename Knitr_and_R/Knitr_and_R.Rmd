@@ -169,6 +169,12 @@ kable(mtcars, 'html', table.attr='id="mtcars_table"')
 
 ```{r}
 # vignette('dataTables') 참고
-options(markdown)
+options(markdown.HTML.header
+    = unlist(
+        sapply(
+            system.file("misc", c("vignette.css", "datatables.txt"), package='knitr'), readLines
+                )
+            )
+      )
 ```
 
