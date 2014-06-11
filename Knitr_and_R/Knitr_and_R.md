@@ -24,34 +24,6 @@ options(rstudio.markdownToHTML = function(inputFile, outputFile) {
 ```
 
 
-표 만들기
-
-```r
-library("knitr")
-kable(head(iris), format = "latex")
-```
-
-```
-## 
-## \begin{tabular}{r|r|r|r|l}
-## \hline
-## Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-## \hline
-## 5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-## \hline
-## 4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-## \hline
-## 4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-## \hline
-## 4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-## \hline
-## 5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-## \hline
-## 5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-## \hline
-## \end{tabular}
-```
-
 
 knitr option
 ----------------------------------------------------
@@ -140,10 +112,32 @@ R 코드가 정리되어 출력되도록 한다.
 결과값 앞에 ##를 붙여 sourcecode와 구분한다.  
 `comment=NA`로 하면 ##를 붙이지 않고 출력한다. 
 
-* `result='markup'`
+* `results='markup'`
 
 마크업 언어의 형태로 변환해 내보낸다.  
-`result='asis'` : 있는 그대로 다름 단계로 넘긴다.
-`result='hide'` : 결과 자체를 출력하지 않는다.
+`results='asis'` : 있는 그대로 다름 단계로 넘긴다.
+`results='hide'` : 결과 자체를 출력하지 않는다.
+
+표 만들기의 예에서, R 코드 실행 결과가 MD으로 바뀌어 HTML로 넘어가기 때문에 결과가 문자열로 출력된다. 
+
+```r
+library("knitr")
+kable(head(iris), format = "HTML")
+```
+
+```
+## Error: could not find function "kable_HTML"
+```
+
+
+`results='asis'`로 하면 R 코드 실행 결과를 MD로 바뀌지 않고 그대로 넘기기 때문에 HTML에서 표를 그려 보여준다.
+
+```r
+kable(head(iris), format = "HTML")
+```
+
+```
+## Error: could not find function "kable_HTML"
+```
 
 

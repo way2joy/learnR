@@ -1080,32 +1080,6 @@ library(knitrBootstrap)
 })
 </code></pre>
 
-<p>표 만들기</p>
-
-<pre><code class="r">library(&quot;knitr&quot;)
-kable(head(iris), format = &quot;latex&quot;)
-</code></pre>
-
-<pre><code>## 
-## \begin{tabular}{r|r|r|r|l}
-## \hline
-## Sepal.Length &amp; Sepal.Width &amp; Petal.Length &amp; Petal.Width &amp; Species\\
-## \hline
-## 5.1 &amp; 3.5 &amp; 1.4 &amp; 0.2 &amp; setosa\\
-## \hline
-## 4.9 &amp; 3.0 &amp; 1.4 &amp; 0.2 &amp; setosa\\
-## \hline
-## 4.7 &amp; 3.2 &amp; 1.3 &amp; 0.2 &amp; setosa\\
-## \hline
-## 4.6 &amp; 3.1 &amp; 1.5 &amp; 0.2 &amp; setosa\\
-## \hline
-## 5.0 &amp; 3.6 &amp; 1.4 &amp; 0.2 &amp; setosa\\
-## \hline
-## 5.4 &amp; 3.9 &amp; 1.7 &amp; 0.4 &amp; setosa\\
-## \hline
-## \end{tabular}
-</code></pre>
-
 <h2>knitr option</h2>
 
 <h3>6.2 일반옵션</h3>
@@ -1203,12 +1177,29 @@ kable(head(iris), format = &quot;latex&quot;)
 <code>comment=NA</code>로 하면 ##를 붙이지 않고 출력한다. </p>
 
 <ul>
-<li><code>result=&#39;markup&#39;</code></li>
+<li><code>results=&#39;markup&#39;</code></li>
 </ul>
 
 <p>마크업 언어의 형태로 변환해 내보낸다.<br/>
-<code>result=&#39;asis&#39;</code> : 있는 그대로 다름 단계로 넘긴다.
-<code>result=&#39;hide&#39;</code> : 결과 자체를 출력하지 않는다.</p>
+<code>results=&#39;asis&#39;</code> : 있는 그대로 다름 단계로 넘긴다.
+<code>results=&#39;hide&#39;</code> : 결과 자체를 출력하지 않는다.</p>
+
+<p>표 만들기의 예에서, R 코드 실행 결과가 MD으로 바뀌어 HTML로 넘어가기 때문에 결과가 문자열로 출력된다. </p>
+
+<pre><code class="r">library(&quot;knitr&quot;)
+kable(head(iris), format = &quot;HTML&quot;)
+</code></pre>
+
+<pre><code>## Error: could not find function &quot;kable_HTML&quot;
+</code></pre>
+
+<p><code>results=&#39;asis&#39;</code>로 하면 R 코드 실행 결과를 MD로 바뀌지 않고 그대로 넘기기 때문에 HTML에서 표를 그려 보여준다.</p>
+
+<pre><code class="r">kable(head(iris), format = &quot;HTML&quot;)
+</code></pre>
+
+<pre><code>## Error: could not find function &quot;kable_HTML&quot;
+</code></pre>
 
 </body>
 
