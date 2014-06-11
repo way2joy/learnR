@@ -76,3 +76,11 @@ code chunk 출력물 6가지
 
 #### sourcecode option 
 
+echo=TRUE
+
+prompt=FALSE
+
+tidy=TRUE
+
+highlight=TRUE
+
