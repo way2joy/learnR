@@ -158,7 +158,8 @@ kable(mtcars, 'html', table.attr='id="mtcars_table"')
 ```
 
 <script type="text/javascript" charset="utf-8">
-  $(document).ready(function(){
-    $('#mtcars_table').dataTable();
+  $(document).ready(
+    function(){
+      $('#mtcars_table').dataTable();
   });
 </script>
