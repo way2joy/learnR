@@ -132,7 +132,7 @@ HTML의 경우도 그러하다.
 
 ```{r table_html}
 # kable(head(iris), format="html")
-kable(head(iris), format="html")
+kable(head(iris, 3), format="html")
 ```
 
 ```{r table_html, results='asis', echo=FALSE}
