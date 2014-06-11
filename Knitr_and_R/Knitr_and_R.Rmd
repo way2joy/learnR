@@ -78,8 +78,11 @@ code chunk 출력물 6가지
 
 `echo=TRUE`
 
+현재의 소스코드를 출력한다.  
+`echo=c(3, 5)` : 3번과 5번줄만 출력한다. 
 
 `prompt=FALSE`
+
 
 `tidy=TRUE`
 
