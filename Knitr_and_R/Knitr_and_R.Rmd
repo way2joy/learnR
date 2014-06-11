@@ -101,11 +101,11 @@ R 코드가 정리되어 출력되도록 한다.
 
 레이텍 출력에서 코드 청크의 폰트 사이즈를 정한다. 
 
-#### text 출력 옵션
+#### text 출력(sourcecode의 결과물) 옵션
 
 * `comment='##'`
 
-결과값 앞에 ##를 붙여 sorcecode와 구분한다.  
+결과값 앞에 ##를 붙여 sourcecode와 구분한다.  
 `comment=NA`로 하면 ##를 붙이지 않고 출력한다. 
 
 * `result='markup'`
