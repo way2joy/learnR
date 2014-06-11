@@ -30,4 +30,4 @@ knitr 옵션
 
 - `include=TRUE` : 청크 결과물을 파일에 포함시킬지 여부
 
-- 
+- `lavel=""` : 
