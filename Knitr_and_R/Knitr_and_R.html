@@ -1195,7 +1195,8 @@ kable(head(iris), format = &quot;HTML&quot;)
 
 <p><code>results=&#39;asis&#39;</code>로 하면 R 코드 실행 결과를 MD로 바뀌지 않고 그대로 넘기기 때문에 HTML에서 표를 그려 보여준다.</p>
 
-<pre><code class="r">kable(head(iris), format = &quot;HTML&quot;)
+<pre><code class="r">library(&quot;knitr&quot;)
+kable(head(iris), format = &quot;HTML&quot;)
 </code></pre>
 
 <pre><code>## Error: could not find function &quot;kable_HTML&quot;
