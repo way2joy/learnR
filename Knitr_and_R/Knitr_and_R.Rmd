@@ -167,12 +167,6 @@ options(markdown.HTML.header
       )
 ```
 
-테이블 그리기(테이블에 id 지정)
-```{r echo=FALSE, results='asis'}
-library(knitr)
-kable(iris, 'html', table.attr='id="iris_table"')
-```
-
 해당 id에 javascript 입히기
 ```
 <script type="text/javascript" charset="utf-8">
@@ -182,8 +176,15 @@ kable(iris, 'html', table.attr='id="iris_table"')
     }
   );
 </script>
-
 ```
+
+테이블 그리기(테이블에 id 지정)
+```{r echo=FALSE, results='asis'}
+library(knitr)
+kable(iris, 'html', table.attr='id="iris_table"')
+```
+
+
 <script type="text/javascript" charset="utf-8">
   $(document).ready(
     function(){
