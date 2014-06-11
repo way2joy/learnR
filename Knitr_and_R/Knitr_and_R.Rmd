@@ -138,4 +138,11 @@ kable(head(iris, 3), format="html")
 ```{r table_html, results='asis', echo=FALSE}
 ```
 
-#### 
+#### message, warning, error
+
+`message=TRUE`
+
+`warning=TRUE`
+
+`error=TRUE`
+
