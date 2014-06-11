@@ -135,3 +135,5 @@ HTML의 경우도 그러하다.
 kable(head(iris), format="html")
 ```
 
+```{r table_html, results='asis', echo=FALSE}
+```
