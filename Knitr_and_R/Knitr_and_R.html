@@ -1341,6 +1341,8 @@ options(markdown.HTML.header = unlist(sapply(system.file(&quot;misc&quot;, c(&qu
     &quot;datatables.txt&quot;), package = &quot;knitr&quot;), readLines)))
 </code></pre>
 
+<p>테이블 그리기(테이블에 id 지정)</p>
+
 <table id="iris_table">
  <thead>
   <tr>
@@ -2404,6 +2406,18 @@ options(markdown.HTML.header = unlist(sapply(system.file(&quot;misc&quot;, c(&qu
   </tr>
 </tbody>
 </table>
+
+<p>해당 id에 javascript 입히기</p>
+
+<pre><code>&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+  $(document).ready(
+    function(){
+      $(&#39;#iris_table&#39;).dataTable();
+    }
+  );
+&lt;/script&gt;
+
+</code></pre>
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(

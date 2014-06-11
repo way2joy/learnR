@@ -259,7 +259,7 @@ options(markdown.HTML.header = unlist(sapply(system.file("misc", c("vignette.css
 ```
 
 
-
+테이블 그리기(테이블에 id 지정)
 <table id="iris_table">
  <thead>
   <tr>
@@ -1325,6 +1325,17 @@ options(markdown.HTML.header = unlist(sapply(system.file("misc", c("vignette.css
 </table>
 
 
+해당 id에 javascript 입히기
+```
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(
+    function(){
+      $('#iris_table').dataTable();
+    }
+  );
+</script>
+
+```
 <script type="text/javascript" charset="utf-8">
   $(document).ready(
     function(){
