@@ -76,12 +76,13 @@ code chunk 출력물 6가지
 
 #### sourcecode option 
 
-echo=TRUE
+`echo=TRUE`
 
-prompt=FALSE
 
-tidy=TRUE
+`prompt=FALSE`
 
-highlight=TRUE
+`tidy=TRUE`
 
-background='#F7F7F7'
+`highlight=TRUE`
+
+`background='#F7F7F7'`
