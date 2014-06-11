@@ -1082,36 +1082,51 @@ library(knitrBootstrap)
 
 <h2>knitr option</h2>
 
-<h3><code>cache=FALSE</code></h3>
+<p>code chunk 출력물 6가지</p>
+
+<ul>
+<li>source code</li>
+<li>graph(plot)</li>
+<li>text</li>
+<li>massage</li>
+<li>warning</li>
+<li>error</li>
+</ul>
+
+<h3>일반옵션</h3>
+
+<h4><code>cache=FALSE</code></h4>
 
 <p>처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)</p>
 
-<h4>참고</h4>
+<p>코드의 일부만 실행시킬 수도 있다.</p>
 
 <p><code>eval=c(1,5)</code> : 1, 5 line code만 실행<br/>
 <code>eval=-c(1,5)</code> : 1, 5 line code 빼고 실행</p>
 
-<h3><code>eval=TRUE</code></h3>
+<h4><code>eval=TRUE</code></h4>
 
 <p>코드를 실행할지 여부</p>
 
-<h3><code>include=TRUE</code></h3>
+<h4><code>include=TRUE</code></h4>
 
 <p>청크 결과물을 변환될 md, HTML 파일에 포함시킬지 여부</p>
 
-<h3><code>label=&quot;&quot;</code></h3>
+<h4><code>label=&quot;&quot;</code></h4>
 
 <p>개별 코드 청크의 이름을 부여함</p>
 
+<p><code>{r label=&quot;mycode&quot;}</code>는 <code>{r mycode}</code>라고 표현할 수도 있다.</p>
+
 <p>코드를 재사용하는데 활용할 수 있다. (불러낼 때에는 코드 chunk에 아무것도 넣지 않는다.)</p>
 
-<p><code>{r label=&quot;mycode&quot;}</code>는 <code>{r mycode}</code></p>
-
 <pre><code class="r">a &lt;- c(1, 2, 3, 4)
 </code></pre>
 
 <pre><code class="r">a &lt;- c(1, 2, 3, 4)
 </code></pre>
+
+<h3>출력물 옵션</h3>
 
 <h3>fig</h3>
 
