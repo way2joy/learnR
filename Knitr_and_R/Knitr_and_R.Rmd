@@ -154,6 +154,20 @@ kable(head(iris, 3), format="html")
 
 #### 동적 table 만들기
 
+옵션 준비
+
+```{r}
+# vignette('dataTables') 참고
+options(markdown.HTML.header
+    = unlist(
+        sapply(
+            system.file("misc", c("vignette.css", "datatables.txt"), package='knitr'), readLines
+                )
+            )
+      )
+```
+
+
 ```{r}
 library(knitr)
 kable(mtcars, 'html', table.attr='id="mtcars_table"')
@@ -167,14 +181,5 @@ kable(mtcars, 'html', table.attr='id="mtcars_table"')
   );
 </script>
 
-```{r}
-# vignette('dataTables') 참고
-options(markdown.HTML.header
-    = unlist(
-        sapply(
-            system.file("misc", c("vignette.css", "datatables.txt"), package='knitr'), readLines
-                )
-            )
-      )
-```
+
 
