@@ -121,4 +121,5 @@ library("knitr")
 kable(head(iris), format="HTML")
 ```
 
-`result='asis'`로 하면 
+`result='asis'`로 하면 R 코드 실행 결과를 MD로 바뀌지 않고 그대로 넘기기 때문에 HTML에서 표를 그려 보여준다.
+```{r table_HTML }
