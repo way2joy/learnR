@@ -1,0 +1,22 @@
+Title
+
+### 5.4.3 knitrBootstrap 스타일링
+
+```{r}
+install.packages("knitrBootstrap")
+library(knitrBootstrap)
+```
+
+"Knit HTML"버튼과 연동되어 있는  markdownToHTML() 함수 행동 바꾸기
+```{r}
+options(rstudio.markdownToHTML = 
+          function(inputFile, outputFile){
+            require(knitrBootstrap)
+            knit_bootstrap_md(input=inputFile, output=outputFile)
+          })
+```
+
+```{r fig.width=7, fig.height=6}
+plot(cars)
+```
+
