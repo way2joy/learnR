@@ -122,6 +122,23 @@ R 코드가 정리되어 출력되도록 한다.
 
 ```r
 library("knitr")
+# kable(head(iris))
+kable(head(iris))
+```
+
+```
+## |  Sepal.Length|  Sepal.Width|  Petal.Length|  Petal.Width|Species  |
+## |-------------:|------------:|-------------:|------------:|:--------|
+## |           5.1|          3.5|           1.4|          0.2|setosa   |
+## |           4.9|          3.0|           1.4|          0.2|setosa   |
+## |           4.7|          3.2|           1.3|          0.2|setosa   |
+## |           4.6|          3.1|           1.5|          0.2|setosa   |
+## |           5.0|          3.6|           1.4|          0.2|setosa   |
+## |           5.4|          3.9|           1.7|          0.4|setosa   |
+```
+
+```r
+# kable(head(iris), format='html')
 kable(head(iris), format = "html")
 ```
 
@@ -185,6 +202,14 @@ kable(head(iris), format = "html")
 
 
 `results='asis'`로 하면 R 코드 실행 결과를 MD로 바뀌지 않고 그대로 넘기기 때문에 HTML에서 표를 그려 보여준다.
+|  Sepal.Length|  Sepal.Width|  Petal.Length|  Petal.Width|Species  |
+|-------------:|------------:|-------------:|------------:|:--------|
+|           5.1|          3.5|           1.4|          0.2|setosa   |
+|           4.9|          3.0|           1.4|          0.2|setosa   |
+|           4.7|          3.2|           1.3|          0.2|setosa   |
+|           4.6|          3.1|           1.5|          0.2|setosa   |
+|           5.0|          3.6|           1.4|          0.2|setosa   |
+|           5.4|          3.9|           1.7|          0.4|setosa   |
 <table>
  <thead>
   <tr>
@@ -241,61 +266,5 @@ kable(head(iris), format = "html")
 </tbody>
 </table>
 
-
-<table>
- <thead>
-  <tr>
-   <th> Sepal.Length </th>
-   <th> Sepal.Width </th>
-   <th> Petal.Length </th>
-   <th> Petal.Width </th>
-   <th> Species </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td> 5.1 </td>
-   <td> 3.5 </td>
-   <td> 1.4 </td>
-   <td> 0.2 </td>
-   <td> setosa </td>
-  </tr>
-  <tr>
-   <td> 4.9 </td>
-   <td> 3.0 </td>
-   <td> 1.4 </td>
-   <td> 0.2 </td>
-   <td> setosa </td>
-  </tr>
-  <tr>
-   <td> 4.7 </td>
-   <td> 3.2 </td>
-   <td> 1.3 </td>
-   <td> 0.2 </td>
-   <td> setosa </td>
-  </tr>
-  <tr>
-   <td> 4.6 </td>
-   <td> 3.1 </td>
-   <td> 1.5 </td>
-   <td> 0.2 </td>
-   <td> setosa </td>
-  </tr>
-  <tr>
-   <td> 5.0 </td>
-   <td> 3.6 </td>
-   <td> 1.4 </td>
-   <td> 0.2 </td>
-   <td> setosa </td>
-  </tr>
-  <tr>
-   <td> 5.4 </td>
-   <td> 3.9 </td>
-   <td> 1.7 </td>
-   <td> 0.4 </td>
-   <td> setosa </td>
-  </tr>
-</tbody>
-</table>
 
 
