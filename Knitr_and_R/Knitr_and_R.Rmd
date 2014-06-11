@@ -29,6 +29,16 @@ options(rstudio.markdownToHTML =
 knitr option
 ----------------------------------------------------
 
+code chunk 출력물 6가지
+
+- source code
+- graph(plot)
+- text
+- massage
+- warning
+- error
+
+
 ### 일반옵션
 
 #### `cache=FALSE`
