@@ -28,4 +28,4 @@ knitr 옵션
 
 - `eval=TRUE` : 코드를 실행할지 여부
 
-- `include` : 
+- `include=TRUE` : 
