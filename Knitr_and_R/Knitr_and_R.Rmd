@@ -115,15 +115,16 @@ R 코드가 정리되어 출력되도록 한다.
 `result='asis'` : 있는 그대로 다름 단계로 넘긴다.
 `result='hide'` : 결과 자체를 출력하지 않는다.
 
-표 만들기
+표 만들기의 예
 ```{r table_latex}
 library("knitr")
 kable(head(iris), format="latex")
 ```
 
-비교해 보자. 
+HTML이라면,  
 ```{r table_HTML}
 library("knitr")
 kable(head(iris), format="HTML")
 ```
+
 
