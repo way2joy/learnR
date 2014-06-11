@@ -28,7 +28,7 @@ options(rstudio.markdownToHTML =
 
 표 만들기
 ```{r eval=FALSE}
-
+library("knitr")
 ```
 
 knitr option
