@@ -74,7 +74,7 @@ code chunk 출력물 6가지
 - warning
 - error
 
-#### sourcecode option 
+#### sourcecode 출력 option 
 
 * `echo=TRUE`
 
@@ -101,6 +101,6 @@ R 코드가 정리되어 출력되도록 한다.
 
 레이텍 출력에서 코드 청크의 폰트 사이즈를 정한다. 
 
-#### text 옵션
+#### text 출력 옵션
 
 * 
