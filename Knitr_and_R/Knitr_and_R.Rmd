@@ -29,11 +29,13 @@ options(rstudio.markdownToHTML =
 knitr option
 ----------------------------------------------------
 
-### `cache=FALSE`
+### 일반옵션
+
+#### `cache=FALSE`
 
 처음 컴파일 할 때 결과를 저장하고 이후 컴파일 할 때 값이 바뀌지 않으면 재활용함(바뀌면 재계산)
 
-#### 참고
+코드의 일부만 실행시킬 수도 있다.
 
 `eval=c(1,5)` : 1, 5 line code만 실행  
 `eval=-c(1,5)` : 1, 5 line code 빼고 실행
