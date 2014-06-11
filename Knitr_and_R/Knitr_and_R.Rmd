@@ -161,5 +161,6 @@ kable(mtcars, 'html', table.attr='id="mtcars_table"')
   $(document).ready(
     function(){
       $('#mtcars_table').dataTable();
-  });
+    }
+  );
 </script>
