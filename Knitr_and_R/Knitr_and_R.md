@@ -42,11 +42,26 @@ knitr option
 
 ### `include=TRUE`
 
-청크 결과물을 파일에 포함시킬지 여부
+청크 결과물을 변환될 md, HTML 파일에 포함시킬지 여부
 
 ### `label=""`
 
 개별 코드 청크의 이름을 부여함
+
+코드를 재사용하는데 활용할 수 있다. (불러낼 때에는 코드 chunk에 아무것도 넣지 않는다.)
+
+>```{r label="mycode"}
+>```
+>
+>```{r "mycode"}
+>```
+
+
+### fig
+
+fig.width=7
+fig.height=5
+
 
 
 
