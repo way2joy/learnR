@@ -168,6 +168,7 @@ kable(mtcars, 'html', table.attr='id="mtcars_table"')
 </script>
 
 ```{r}
+# vignette('dataTables') 참고
 
 ```
 
