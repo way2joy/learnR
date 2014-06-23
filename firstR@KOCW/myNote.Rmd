@@ -540,8 +540,17 @@ qunif(확률값)
 ruinf(개수)
 
 ### 정규분포
+```{r}
+dnorm(1.645, mean=0, sd=1)
+pnorm(1.645, mean=0, sd=1)
+qnorm(pnorm(1.645), mean=0, sd=1)
+
+
+```
+
 
 ### 이항분포
+
 
 
 
