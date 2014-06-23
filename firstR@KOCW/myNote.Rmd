@@ -328,10 +328,11 @@ PuroTrt <- subset(Puromycin, state=="treated")  # Puromycin[Puromycin$state=="tr
 그래프 파라미터 지정
 ```{r}
 par( mfrow=c(1,3))   # 그래프를 1열 3행으로 그리겠다. 
-plot(rate ~ conc, data=PuroTrt, type="P")   # punctuation
+plot(rate ~ conc, data=PuroTrt, type="p")   # punctuation
 plot(rate ~ conc, data=PuroTrt, type="l")   # line
 plot(rate ~ conc, data=PuroTrt, type="b")   # both
 ```
+
 
 
 
