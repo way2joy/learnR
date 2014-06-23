@@ -320,8 +320,10 @@ Tip) R에서 메모리 정리 `gc()`
 실습
 ```{r}
 str(Puromycin)
-
-
+x <- 1:5
+y <- 5:1
+plot(x,y)
+dev.list()
 ```
 
 
