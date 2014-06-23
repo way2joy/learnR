@@ -374,6 +374,7 @@ ztest(y, mu=1)
 -------------------------------------------------------
 
 기본 package를 알아 보자.
+
 ```{r}
 getOption("defaultPackages")
 ```
@@ -381,6 +382,7 @@ getOption("defaultPackages")
 관련된 명령어 `install.packages("myPackage")`, `library("myPackage")`, `help(package="myPacakage")`등이다. 
 
 기존 package들을 최신 버전으로 업데이트 해보자.
+
 ```{r}
 update.packages()
 ```
@@ -398,8 +400,9 @@ dev.list()
 PuroTrt <- subset(Puromycin, state=="treated")  # Puromycin[Puromycin$state=="treated",]
 ```
 
-그래프 파라미터 지정 `par`
-`type`
+그래프 파라미터 지정 `par`  
+`type` : 그래프 형태
+
 ```{r}
 par( mfrow=c(1,3))   # 그래프를 1열 3행으로 그리겠다. 
 plot(rate ~ conc, data=PuroTrt, type="p")   # punctuation (default)
@@ -519,6 +522,15 @@ text(5.61, 0.22, labels=c("검정통계량"))
 ```{r}
 locator()        # 마우스 포인트로 알 수 있다.
 ```
+
+분포함수 in R
+-----------------------------------
+
+접두어
++ d ~ Density : 확률밀도함수 값을 구한다.
++ p ~ Probability : 누적분포함수 값을 구한다.
++ q ~ Quantile : 누적확률에 해당하는 분포함수의 x값 반환
++ r ~ Random : 난수 생성
 
 
 
