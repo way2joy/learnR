@@ -336,7 +336,7 @@ plot(rate ~ conc, data=PuroTrt, type="b")   # both
 ```{r}
 par( mfrow=c(1,2))
 plot(rate ~ conc, data=PuroTrt, type="p")
-
+plot(rate ~ conc, data=PuroTrt, type="p")
 ```
 
 
