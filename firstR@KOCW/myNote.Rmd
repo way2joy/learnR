@@ -336,7 +336,7 @@ plot(rate ~ conc, data=PuroTrt, type="b")   # both
 
 `xlab`, `ylab` : 라벨 지정  
 `cex`(character extention) : 
-`cex.lab` : 
+`cex.lab` : 문자의 크기
 
 ```{r}
 par( mfrow=c(1,2))
