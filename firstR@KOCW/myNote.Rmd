@@ -544,12 +544,39 @@ ruinf(개수)
 dnorm(1.645, mean=0, sd=1)
 pnorm(1.645, mean=0, sd=1)
 qnorm(pnorm(1.645), mean=0, sd=1)
-
-
+norm <- rnorm(100, mean=0, sd=1)
+hist(norm, freq=F)
+lines(norm)
 ```
 
 
 ### 이항분포
+
+### t분포
+
+```{r}
+dt(1.6, df=5)
+pt(1.6, df=5)
+qt(0.025, df=5)
+rt(10, df=5)
+```
+
+자유도에 따른 표준정규분포와 t분포의 차이
+```{r}
+x <- seq(-3, 3, by=0.01)     # x 좌표 설정
+z <- dnorm(x)
+plot(x,z,type='l')
+
+t.3 <- dt(x, df=3)
+lines(x, t.3, col="red")
+
+t.10 <- dt(x, df=10)
+lines(x, t.10, col="blue")
+
+t.30 <- dt(x, df=30)
+lines(x, t.30, col="yellow", lwd=2)
+
+```
 
 
 
