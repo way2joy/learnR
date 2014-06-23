@@ -300,5 +300,10 @@ paste( dan, " X ", i, " = ", dan * i)
 외부 Package 사용
 -------------------------------------------------------
 
+```{r}
+getOption("defaultPackages")
+```
+
+
 
 
