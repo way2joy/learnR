@@ -297,6 +297,79 @@ i <- 2:9
 paste( dan, " X ", i, " = ", dan * i)
 ```
 
+사용자 정의 함수
+-----------------------------------------------------
+
+사용자 정의함수의 일반적인 형식
+
+```{r}
+
+```
+
+함수명 <- function(전달인자1, 전달인자2, ...){
+  함수 작성을 위한 코드 들
+  return(반환값)
+}
+
+
+```{r}
+myfactorial <- function(x=4){    # 기본전달인자 4로 지정
+  fact <- 1
+  i <- x
+  while(i>1){
+    fact <- fact * i
+    i <- i - 1
+  }
+  return(fact)
+}
+
+myfactorial(3)
+myfactorial()
+```
+
+위의 함수를 재귀함수로 만들어 간략화 해 보자
+
+```{r}
+myfactorial.re <- function(x){
+    prod <- x
+    if( x<2 ){
+        return(1)
+     } else {
+        prod <- x * myfactorial.re(x-1)
+        return(prod)
+  }
+}
+
+myfactorial.re(6)
+```
+
+예제) z-test
+
+```{r}
+# 사용자 함수 만들기
+ztest <- function(x, sd.p=NULL, mu=0, alternative="two,sided"){
+    n <- length(x)
+    sd <- ifelse(is.null(sd.p), sd(x), sd.p)
+    se <- sd / sqrt(n)
+    test <- mean(x) - mu
+    t.stat <- test / se
+    bias <- x - mean(x)
+    p <- pnorm(t.stat)
+    p.value <- 2 * (ifelse(t.stat<0, p, 1-p))
+    out <- list(statistic=t.stat, p.value=p.value, bias=bias)
+    return(out)   
+}
+
+# test 1
+x <- rnorm(30)
+ztest(x)
+
+# test 2
+y <- rbinom(30, 5, 0.2) ; y
+ztest(y, mu=1)
+```
+
+
 외부 Package 사용
 -------------------------------------------------------
 
