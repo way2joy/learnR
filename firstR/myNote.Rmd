@@ -1,0 +1,301 @@
+(통계프로그래밍과 분석을 위한) R 입문
+========================================================
+
+한림대학교 이윤환
+
+From [here](http://www.kocw.net/home/cview.do?cid=1cab3917a2e52e4c)
+
+Intro
+--------------------------------------------------------
+
+함수에 대한 기능 알아보기 
+
+```{r}
+?"for"   # help("for")
+??"mean"  # help.search("mean")
+example( seq)
+```
+
+자료형
+--------------------------------------------------------
+
+### 벡터
+
+벡터는 동일한 자료형을 가져야 한다. 
+
+벡터의 생성
+
+```{r}
+# 연산자
+1:5
+5:1
+
+# 함수
+vector(length=10)
+
+( x <- c(1,2,3) )  # 'combine'의 약자
+( y <- c(4,5, x) )   # 벡터의 결합
+
+seq(from=1, to=10, by=2)    # by에는 수식도 가능
+seq(from=0, to=10, length.out=5)
+
+rep(x, times=2)
+rep(x, each=2)
+```
+
+인덱싱
+
+```{r}
+x[2]
+x[c(1,2)]
+x[1:2]
+x[-c(1:2)]
+
+```
+
+벡터의 계산
+
+```{r}
+( x <- 1:4 )
+( y <- 5:8 )
+( z <- c(4,2))
+x + 2
+x + y
+x + z
+```
+
+유용한 함수
+all(), any()
+```{r}
+x <- 1:5
+x > 3
+all( x > 3)
+any( x > 3)
+```
+
+두 벡터의 비교
+```{r}
+x <- c(1, 3, 4)
+y <- c(1, 2, 3)
+x == y
+all(x == y)    # 완전히 같은 벡터인가. identical(x, y)
+all(x != y)    # 완전히 다른 벡터인가
+```
+
+벡터에 이름 지정
+```{r}
+height <- c(80, 90, 100, 85)
+names(height) <- c("희동이", "둘리", "도우너", "또치")
+names(height)
+height
+height["둘리"]
+```
+
+sampling
+```{r}
+x <- 1:100
+head(x)
+tail(x, 4)
+
+sample(x, size=10, replace=T)
+sort(sample(45, size=6))    # 로또의 경우
+sample(10, 3, prob=(1:10)/55)    # 추출될 확률값을 다르게 지정함
+
+x[ sample(length(x), 3)]
+```
+
+index 반환
+```{r}
+x <- c(2,4,-1,3)
+x>2
+x[x>2]    # 해당 원소를 반환
+which(x>2)    # 해당 원소의 index를 반환
+names(x) <- c("1st", "2nd", "3rd", "4th")
+which(x>2)
+```
+
+### array, list
+
+```{r}
+arr <- array(1:3, c(2,4))
+arr
+arr[1, ]
+arr[ ,3]
+arr[1,3]
+```
+
+
+```{r}
+dimnamearr = list(c("1st", "2nd"), c("c1", "c2", "c3", "c4"))
+arr2 <- array(1:3, c(2,4), dimnames=dimnamearr)
+arr2
+```
+
+```{r}
+tmp <- 1:12
+
+m1 <- matrix(tmp, nrow=3)    # matrix(tmp, ncol=4)와 결과가 같다.
+m1
+
+m2 <- matrix(tmp, nrow=3, byrow=T)
+m2
+```
+
+```{r}
+v1 <- 1:4
+v2 <- 5:8
+v3 <- 9:12
+
+m4 <- cbind(v1,v2,v3)
+m5 <- rbind(v1,v2,v3)
+# cbind, rbind 사용 시 자료 형태가 일치해야 한다.
+
+apply(m5, 1, sum)
+apply(m5, 2, sum)
+```
+
+### factor
+
+```{r}
+x <- 1:5
+factor(x, levels=c(1,2,3,4))
+factor(x, levels=c(1,2,3,4), exclude=c(1,2))
+factor(x, levels=c(1,2,3,4), ordered=T)
+factor(x, levels=c(1,2,3,4), labels=c("bad", "soso", "good", "verygood"))
+
+as.factor(x)
+```
+
+```{r}
+score <- c(92,90,82,88,78,64,82,90)
+subject <- c("k","k","m","m","m", "m","k","k")
+score;subject
+subject.f <- factor(subject, levels=c("k", "m"))
+tapply(score, subject.f, mean)
+```
+
+### data.frame
+
+```{r}
+name <- c("철수", "영희", "길동")
+age <- c(21,20,31)
+gender <- factor(c("M", "F", "M"))
+name;age;gender
+
+students <- data.frame(name, age, gender)
+students.named <- data.frame(이름=name, 나이=age, 성별=gender)
+students;students.named
+```
+
+
+```{r}
+head(airquality)
+subset(airquality, Temp > 80)
+subset(airquality, Temp > 80, select=c(Ozone,Temp))
+subset(airquality, Temp > 80, select=-c(Ozone,Temp))
+
+str(airquality)
+no <- na.omit(airquality)   # NA가 포함된 행 삭제
+str(no)
+```
+
+```{r}
+merge()
+```
+
+### list
+
+Vector, Array(Matrix)은 모든 자료의 자료형이 동일한다. 다를 경우 R은 암묵적인 형변환을 시킨다. 
+
+Data.frame의 경우 행 내의 자료형은 동일하지만(=벡터) 행 간의 자료형은 다를 수 있다. 
+
+List는 자료 간에 자료형이 다를 수 있다. 
+
+```{r}
+title <- "My List"
+ages <- c(31,41,21)
+members <- matrix(1:9, ncol=3)
+names <- c("Baby", "Gentle", "none")
+
+listEx <- list(title, ages, members, names)
+listEx;str(listEx)
+listEx[[1]]    # cf) listEx[1]
+
+listEx2 <- list(제목=title, 나이=ages, 회원=members, 이름=names)   # data.frame 형성하는 방법과 같다. 
+listEx2
+listEx2$나이    # listEx2[[2]]와 같다.
+```
+
+list를 위한 apply는 lapply, 결과를 list로 반환한다.  
+sapply (simple apply)는 결과를 벡터로 출력한다. 
+
+```{r}
+mylist <- list(a=1:10, beta=exp(-3:3), logic=c(T,F,F,T))
+lapply(x,mean)    # mean(mylist$a), mean(mylist$beta), mean(mylist$logic)
+sapply(x,mean)
+```
+
+입출력
+--------------------------------------------------------
+
+계행문자 
++ 유닉스계열 New_line(\n)  
++ 윈도우 carriage_Return(\r\n)
+
+```{r}
+df <- data.frame(name=c("철수", "영희", "길동"), age=c(21,20,31), gender=factor(c("M", "F", "M")))
+df
+df[ df$gender=="M" & df$age < 30 ,] 
+df[ df$gender=="M" & df$age < 30 , c(1,2)]    # 행조건을 상정한 뒤에 가져올 열을 정한다. 
+
+```
+
+조건문
+-------------------------------------------------------
+
+```{r}
+x <- 6:-4 ; x
+ifelse( x > 0, x , NA)    # TRUE면 x, FALSE면 NA
+sqrt(ifelse( x > 0, x , NA))
+```
+
+```{r}
+x <- factor(c(1,2,3)) ; x
+if(is.factor(x)) length(x)  # 1줄에 끝날 때는 {code block}에서 { }를 생략 가능하다. 
+
+```
+
+반복문
+--------------------------------------------------------
+
+```{r}
+i <- 20
+
+repeat {
+  if(i>25){
+    break
+  } else {
+    print(i)
+    i <- i + 1
+  }
+}
+```
+
+```{r}
+dan <- 2
+i <- 2
+while( i<10 ){
+  times <- i * dan
+  print( paste( dan, " X ", i, " = ", times) )
+  i <- i + 1
+}
+```
+
+위와 똑같은 결과를 다음과 같이 얻을 수 있다. 속도면에서 아래와 같이 하는 것이 월등히 빠르다. 
+```{r}
+i <- 2:9
+paste( dan, " X ", i, " = ", dan * i)
+```
+
+
+
