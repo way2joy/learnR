@@ -312,7 +312,11 @@ getOption("defaultPackages")
 update.packages()
 ```
 
+vcd, alm, Hmisc
 ?update.packages()
+
+Tip) R에서 메모리 정리 `gc()`
+
 
 
 
