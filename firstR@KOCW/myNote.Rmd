@@ -370,6 +370,82 @@ dev.off()     # device를 닫음
 ```
 
 
+### barplot
+
+자료 전처리
+```{r}
+str(ldeaths)    # 시계열 자료이다.
+ld <- matrix(ldeaths, nrow=6, byrow=T)    # plot을 위해 matrix로 변환
+colnames(ld) <- month.abb      # month.abb : 달이름 출약어
+rownames(ld) <- 1974:1979
+ld
+```
+
+barplot 그리기
+barplot은 면적에는 관심이 없고 높이에만 관심이 있는 plot이다. => 이산형, 범주형 자료에 사용된다.
+
+```{r}
+par( mfrow=c(2,2))
+barplot(ld[,"Jan"])
+barplot(ld, beside=T)
+barplot(ld, beside=F)
+barplot(ld, beside=F, horiz=T, density=5)
+dev.off()      # plot device 끄기
+```
+
+너비(비율)로 살펴보려면 pie plot
+barplot과는 달리 높이 없이 면적에 관심이 있는 plot이다.
+```{r}
+par( mfrow=c(1,1))
+pie(ld[,"Jan"])
+pie(ld["1977",])
+```
+
+### hist
+
+연속형 자료에 사용된다.
+
+```{r}
+str(mtcars)
+par(mfrow=c(2,2))
+hist(mtcars$mpg)
+hist(mtcars$mpg, breaks=12, freq=F)
+hist(mtcars$mpg, breaks=12, freq=F, col=c("red", "blue"))
+hist(mtcars$mpg, breaks=quantile(mtcars$mpg))
+```
+
+```{r}
+boxplot(mtcars$mpg)   # boxplot
+stem(mtcars$mpg)      # 줄기잎 그림
+```
+
+### 저수준 그래픽 함수
+
+고수준 그래픽 함수위에 덧그리는 함수
+```{r}
+height <- c(178, 172, 172, 172, 170, 176, 174, 175, 179,)
+mean <- height
+num <- mean(height) - 170
+denom <- 4 / sqrt(length(height))
+z <- num / denom
+
+dev.off()
+x <- seq(-1, 6, 0.01)
+d <- dnorm(x)
+plot(x, d, type="l", axes=F, xlab="", ylab="")
+axis(side=1)
+
+xaxis=seq(1.645, 6, 0.01)
+segments(xaxis, 0, xaxis, dnorm(xaxis), col=2)
+# 시작점의 (x, y), 끝점의 (x, y)
+arrows(5.61, 0.2, 5.61, 0)
+text(5.61, 0.22, labels=c("검정통계량"))
+```
+
+점의 위치를 어떻게 알 수 있나?
+```{r}
+locator()        # 마우스 포인트로 알 수 있다.
+```
 
 
 
