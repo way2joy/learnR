@@ -317,6 +317,12 @@ vcd, alm, Hmisc
 
 Tip) R에서 메모리 정리 `gc()`
 
+실습
+```{r}
+str(Puromycin)
+
+
+```
 
 
 
