@@ -301,11 +301,18 @@ paste( dan, " X ", i, " = ", dan * i)
 -------------------------------------------------------
 
 기본 package를 알아 보자.
-
 ```{r}
 getOption("defaultPackages")
 ```
 
+관련된 명령어 `install.packages("myPackage")`, `library("myPackage")`, `help(package="myPacakage")`등이다. 
+
+기존 package들을 최신 버전으로 업데이트 해보자.
+```{r}
+update.packages()
+```
+
+?update.packages()
 
 
 
