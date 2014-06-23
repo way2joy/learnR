@@ -336,12 +336,13 @@ plot(rate ~ conc, data=PuroTrt, type="b")   # both
 
 `xlab`, `ylab` : 라벨 지정  
 `cex`(character extention) : 
-`cex.lab` : 문자의 크기
+`cex.lab` : 문자의 크기 (기존크기의 몇배?)
+`xlim`, `ylim` : 축 길이 설정
 
 ```{r}
 par( mfrow=c(1,2))
 plot(rate ~ conc, data=PuroTrt, type="p")
-plot(rate ~ conc, data=PuroTrt, type="p", xlab="", ylab="", cex)
+plot(rate ~ conc, data=PuroTrt, type="p", xlab="X축", ylab="Y축", cex.lab=1.5, xlim=c(0.0,1.2), ylim=c(50,250))
 ```
 
 
