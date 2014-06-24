@@ -578,6 +578,19 @@ lines(x, t.30, col="yellow", lwd=2)
 
 ```
 
+### 중심극한정리 시물레이션
+
+```{r}
+x <- 0:20
+y <- dpois(x, lambda=1)   # 포아송분포
+y.4 <- dpois(x, lambda=4)
+plot(x,y, type="b", clo="blue", lwd=2)
+lines(y.4, col="red", lwd=2)
+points(y.4)
+
+
+
+```
 
 
 
