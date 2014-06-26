@@ -626,7 +626,7 @@ H1 : 평균연비가 20mpg보다 크다. (mu > 20)
 with(mtcars, t.test(mpg[am==1], mu=20, alternative="greater"))
 ```
 
-### 2) 두 표본 문제
+### 2) (짝을 이룬) 두 표본 문제
 
 
 
