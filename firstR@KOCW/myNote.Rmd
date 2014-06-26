@@ -609,13 +609,19 @@ t.test
 
 ```{r}
 t.test(x, y = NULL,        # 한 표본 검정, 두 표본 검정
-       alternative = c("two.sided", "less", "greater"),     # 양측검정, 단측검정
+       alternative = c("two.sided", "less", "greater"),     # 대안가설 검정 방법: 양측검정, 단측검정
        mu = 0,             # 모집단의 평균
        paired = FALSE,        # 짝표본인가 여부
        var.equal = FALSE,         # 분산이 같은지 여부
        conf.level = 0.95, ...)         # 유의수준(alpha=0.05)
 ```
 
+H0 : 평균연비가 20mpg이다. (기존에 알려진 사실과 같다. mu=20)
+H1 : 평균연비가 20mpg보다 크다. (mu > 20)
+
+```{r}
+with(mtcars, t.test(mpg[am==1], mu=20, alternative="greater"))
+```
 
 
 
