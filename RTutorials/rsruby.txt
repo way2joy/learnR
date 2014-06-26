@@ -1,0 +1,11 @@
+#rsruby docs
+http://rubydoc.info/gems/rsruby/frames
+
+#rinruby
+https://sites.google.com/a/ddahl.org/rinruby-users/
+
+#Rserve
+http://www.rforge.net/Rserve/doc.html
+
+#ruby image process gem
+https://www.ruby-toolbox.com/categories/image_processing
