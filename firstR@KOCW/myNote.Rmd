@@ -642,7 +642,16 @@ with(sleep, t.test(extra[group==1]-extra[group==2]))
 ### 3) (서로 독립인) 두 표본 문제
 
 ```{r}
+str(InsectSprays)
+attach(InsectSprays)
+spr.A <- count[spray=="A"]
+spr.B <- count[spray=="B"]
+detach()
 
+# t.test의 조건인 등분산 가정을 하기 위해 등분산 검정실시
+var.test(spr.A, spr.B)
+
+t.test(spr.A, spr.B, var.equal=T)
 ```
 
 
