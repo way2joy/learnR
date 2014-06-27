@@ -654,6 +654,12 @@ var.test(spr.A, spr.B)
 t.test(spr.A, spr.B, var.equal=T)
 ```
 
+분산이 동일하다는 가정을 할 수 없다면 
+```{r}
+t.test(spr.A, spr.B, var.equal=F)
+```
+
+
 
 
 
