@@ -628,10 +628,22 @@ with(mtcars, t.test(mpg[am==1], mu=20, alternative="greater"))
 
 ### 2) (짝을 이룬) 두 표본 문제
 
+관찰값의 차이를 구해 분석하면 한 표본 문제로 환원된다. 
 
+```{r}
+with(sleep, t.test(extra[group==1], extra[group==2], paired=T))
+```
 
+다음과 같다. 
+```{r}
+with(sleep, t.test(extra[group==1]-extra[group==2]))
+```
 
+### 3) (서로 독립인) 두 표본 문제
 
+```{r}
+
+```
 
 
 
