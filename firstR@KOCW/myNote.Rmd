@@ -659,6 +659,77 @@ t.test(spr.A, spr.B, var.equal=T)
 t.test(spr.A, spr.B, var.equal=F)
 ```
 
+범주형 자료 분석 
+-----------------------------------
+
+테이블 만들기
+```{r}
+data <- rpois(20,5)
+t1 <- table(data)         # 해당 값의 개수를 반환
+str(t1)
+prop.table(t1)          # 해당 값의 비율을 반환
+```
+
+예제
+```{r}
+str(warpbreaks)
+warpbreaks[sample(54,6), ]
+sb.t <- with(warpbreaks, table(wool, tension))
+prop.table(sb.t)
+```
+
+xtab()
+```{r}
+data1 <- data.frame(group=c("placebo", "placebo", "treatment", "treatment"), outcome=c(1,0,1,0), count=c(16,48,40,20))
+data1
+
+tab1 <- xtabs(count~group+outcome, data=data1) ; tab1
+```
+
+```{r}
+str(ToothGrowth)
+tab2 <- xtabs(~supp + dose, data=ToothGrowth)
+tab2
+apply(tab2, 1, sum)
+apply(tab2, 2, sum)
+```
+
+### 접합도 검정
+
+수작업으로 해보자
+```{r}
+oi <- c(315, 101, 108, 32)
+prob <- c(9,3,3,1)/16
+ei <- 556 * prob ; ei
+q <- sum((oi-ei)^2 / ei)
+1- pchisq(q, df=3)
+```
+
+검정함수를 이용해 보자
+```{r}
+ct <- chisq.test(oi, p=prob)
+```
+
+### 분할표
+
+가능한 검정 
+
++ 독립성 검정
+
++ 동일성 검정
+
+```{r}
+tab1
+ct.i <- chisq.test(tab1)
+ct.i
+
+```
+
+
+
+
+
+
 
 
 
