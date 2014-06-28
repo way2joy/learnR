@@ -3,18 +3,23 @@ title: "myNote.Rmd"
 output: html_document
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+통계 일반
+-----------------------
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+### 통계유형
+
+기술통계 (Descriptive Statistics)
++ 자료 수집 및 정리
++ 자료 형태 표현
++ 자료의 특성값 도출 등
+
+추측통계 (Inferential Statistics)
++ 표본으로부터 관찰하고자 하는 특성값 도출 (표본은 모집단을 잘 대표해야 한다.)
++ 이를 바탕으로 모집단의 특성 파악
 
 ```{r}
-summary(cars)
+weight <- c(72, 74, 73)
+weight2 <- scan()
 ```
 
-You can also embed plots, for example:
 
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
