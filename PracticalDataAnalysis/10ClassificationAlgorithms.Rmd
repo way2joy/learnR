@@ -208,5 +208,22 @@ confusionMatrix(predicted, actual)
 
 ### ROC 커브
 
+```{r}
+probs <- runif(100)
+labels <- as.factor(ifelse(probs>0.5 & runif(100)<0.4, "A", "B"))
+
+library(ROCR)
+pred <- prediction(probs, labels)
+pred.pfm1 <- performance(pred, "tpr", "fpr")
+plot(pred.pfm1)
+pred.pfm2 <- performance(pred, "acc", "cutoff")
+plot(pred.pfm2)
+```
+
+### 3.3 교차 검증 (cross validation)
+
+K-Fold Cross Validation
+
+
 
 
