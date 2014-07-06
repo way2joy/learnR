@@ -44,7 +44,7 @@ iris.scaled <- cbind(as.data.frame(tmp.scaled), Species=iris$Species)
 featurePlot(iris.scaled[,-5], iris.scaled$Species, "ellipse")
 ```
 
-#### PCA
+#### 주성분분석 PCA
 
 PCA(Principal Componenet Analysis) : 차원감소(Dimensionality Reduction) 또는 데이터를 독립차원으로 재표현하기 위하여 사용하는 방법
 
@@ -61,17 +61,12 @@ iris.pd <- predict(iris.p, iris[,-5])
 plot(iris.pd)
 ```
 
-
-
-When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+#### 범주형 변수의 재표현
 
 ```{r}
-summary(cars)
-```
+all <- factor(c(paste0(LETTERS, "0"), paste0(LETTERS, "1")))
 
-You can also embed plots, for example:
 
-```{r fig.width=7, fig.height=6}
-plot(cars)
+
 ```
 
