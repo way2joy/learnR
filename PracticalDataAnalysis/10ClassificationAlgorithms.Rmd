@@ -167,8 +167,11 @@ v[order(-v), , drop=F]    # drop=F : 결과가 벡터로 반환되지 않도록 
 변수가 서로 독립이라면 모델링에서 제외하고 독립이 아니라면 모델에서 중요한 변수로 볼 수 있다.
 
 ```{r}
-chi.squared(Class~., data=Vehicle)
+c <- chi.squared(Class~., data=Vehicle)
+c[order(-c), , drop=F]
 ```
+
+#### 모델을 사용한 변수 중요도 평가
 
 
 
