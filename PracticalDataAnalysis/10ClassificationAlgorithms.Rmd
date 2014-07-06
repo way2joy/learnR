@@ -136,4 +136,14 @@ str(Soybean.rm.nzv)
 
 #### 상관계수(Correlation)
 
+변수간에 높은 상관계수가 존재할 경우 모델을 불안정하게 만들 수 있다. 상관관계가 높은 변수들이 있다면 이들은 PCA 방법 등으로 독립된 차원으로 변환하거나 상관계수가 큰 변수들을 제거할 수 있다. 
+
+`findCorrelation(){caret}`
+threshold 기본값은 0.90 (상관계수가 0.9 이상인 변수는 제거한다.)
+
+```{r}
+library(mlbench) ; data(Vehicle)
+str(Vehicle)
+findCorrelation(cor(Vehicle[,-c(19)]))
+```
 
