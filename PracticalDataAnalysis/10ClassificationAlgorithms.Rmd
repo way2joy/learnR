@@ -195,10 +195,10 @@ actual    <- c(1,0,0,1,1,0,1,1,0,1,1,1)
 
 ```{r}
 xtabs(~predicted+actual)
+sum(predicted==actual) / NROW(actual)
 ```
 
 ```{r}
-sum(predicted==actual) / NROW(actual)
 
 ```
 
