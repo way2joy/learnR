@@ -201,7 +201,9 @@ sum(predicted==actual) / NROW(actual)
 `confusionMatrix(){caret}`
 
 ```{r}
-con
+library(caret)
+confusionMatrix(predicted, actual)
+
 ```
 
 
