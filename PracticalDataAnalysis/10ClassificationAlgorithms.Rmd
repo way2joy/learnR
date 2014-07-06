@@ -173,5 +173,13 @@ c[order(-c), , drop=F]
 
 #### 모델을 사용한 변수 중요도 평가
 
+```{r}
+library(mlbench)
+library(rpart)
+library(caret)
+data(BreastCancer)
+m <- rpart(Class~., data=BreastCancer)
+varImp(m)
+```
 
 
