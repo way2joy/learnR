@@ -150,4 +150,25 @@ Vehicle.rm.crr <- Vehicle[,-corr.index]
 str(Vehicle.rm.crr)
 ```
 
+상관계수를 통해 변수 선택을 할 수도 있다. 상관계수가 작거나 큰 변수를 버릴 수 있다. 
+
+`linear.correlation(){FSeletor}` : pearson correlation
+`rank.correlation(){FSelector}` : spearman correlation
+
+```{r}
+library(FSelector)
+library(mlbench) ; data(Ozone)
+v <- linear.correlation(V4~., data=subset(Ozone, select=-c(V1,V2,V3)))   # V4에 대한 상관계수
+v[order(-v), , drop=F]    # drop=F : 결과가 벡터로 반환되지 않도록 함
+```
+
+#### ChiSquare
+
+변수가 서로 독립이라면 모델링에서 제외하고 독립이 아니라면 모델에서 중요한 변수로 볼 수 있다.
+
+```{r}
+chi.squared(Class~., data=Vehicle)
+```
+
+
 
