@@ -75,3 +75,23 @@ model.matrix(~lvl, data=x)[,-1]
 
 ### 2.2 결측값(NA)의 처리
 
+결측값 찾기 : `complete.cases()`
+
+```{r}
+iris.na <- iris
+iris.na[c(10,20,25,40,32), 3] <- NA
+iris.na[c(33,100,123), 1] <- NA
+iris.na[!complete.cases(iris.na),]  # 전체 열 가운데 하나라도 NA가 있으면
+
+iris.na[is.na(iris.na$Sepal.Length),] # 하나의 열에 대해서만 
+```
+
+NA를 중앙값으로 대치한 예
+```{r}
+library(DMwR)
+na.location <- !complete.cases(iris.na)
+iris.na.md <- centralImputation(iris.na[,-5])
+# 확인
+iris.na.md[na.location,]
+```
+
