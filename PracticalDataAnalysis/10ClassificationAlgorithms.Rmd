@@ -90,10 +90,10 @@ NA를 중앙값으로 대치한 예
 `centralImputation()`
 ```{r}
 library(DMwR)
-na.location <- !complete.cases(iris.na)
+na.index <- !complete.cases(iris.na)
 iris.na.md <- centralImputation(iris.na)
 # 확인
-iris.na.md[na.location,-5]
+iris.na.md[na.index, -5]
 ```
 
 kNN을 사용하여 k개 근접 이웃의 가중 평균으로 대치한 예
@@ -103,7 +103,7 @@ kNN을 사용하여 k개 근접 이웃의 가중 평균으로 대치한 예
 ```{r}
 iris.na.knn <- knnImputation(iris.na)
 # 확인
-iris.na.knn[na.location,-5]
+iris.na.knn[na.index,-5]
 ```
 
 ### 2.3 변수 선택(Feature Selection)
@@ -144,6 +144,10 @@ threshold 기본값은 0.90 (상관계수가 0.9 이상인 변수는 제거한�
 ```{r}
 library(mlbench) ; data(Vehicle)
 str(Vehicle)
-findCorrelation(cor(Vehicle[,-c(19)]))
+corr.index <- findCorrelation(cor(Vehicle[,-c(19)]))
+
+Vehicle.rm.crr <- Vehicle[,-corr.index]
+str(Vehicle.rm.crr)
 ```
+
 
