@@ -206,4 +206,7 @@ confusionMatrix(predicted, actual)
 
 ```
 
+### ROC 커브
+
+
 
