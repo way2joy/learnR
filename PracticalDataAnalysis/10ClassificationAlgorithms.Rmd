@@ -1,7 +1,61 @@
-Titl
-========================================================
+분류 알고리즘
+=====================================================
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring web pages (click the **Help** toolbar button for more details on using R Markdown).
+## 1. 데이터 탐색
+
+### 1.1 기술통계
+
+```{r}
+library(doBy)
+summary(iris)
+
+library(Hmisc)
+describe(iris)
+```
+
+```{r}
+plot(iris)
+plot(Species~Sepal.Length, data=iris)
+plot(iris$Sepal.Length, col=as.numeric(iris$Species))
+```
+
+```{r}
+library(caret)
+featurePlot(iris[,1:4], iris$Species, "ellipse")
+```
+
+## 2. 전처리
+
+### 2.1 데이터 변환
+
+#### 데이터 정규화(Feature Scaling)
+
+`scale()` : 행렬과 데이터 프레임의 경우엔 각 열을 독립적으로 정규화시킨 뒤 정규화된 값(z점수)으로 이루어진 
+열들을 행렬로 반환한다. 
+
+(정규화하고 싶은 값-평균)/표준편차 = z점수(정규화된 값) 
+
++ `center` : 값에서 평균을 뺄지 여부
++ `scale` : 값을 표준편차로 나눌지 여부
+
+```{r}
+tmp.scaled <- scale(iris[,-5])
+iris.scaled <- cbind(as.data.frame(tmp.scaled), Species=iris$Species)
+featurePlot(iris.scaled[,-5], iris.scaled$Species, "ellipse")
+```
+
+#### PCA
+
+PCA(Principal Componenet Analysis) : 차원감소(Dimensionality Reduction) 또는 데이터를 독립차원으로 재표현하기 위하여 사용하는 방법
+
+princomp()
+
+```{r}
+iris.p <- princomp(iris[,-5], cor=T)
+
+```
+
+
 
 When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
