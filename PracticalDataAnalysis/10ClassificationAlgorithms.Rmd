@@ -48,11 +48,17 @@ featurePlot(iris.scaled[,-5], iris.scaled$Species, "ellipse")
 
 PCA(Principal Componenet Analysis) : 차원감소(Dimensionality Reduction) 또는 데이터를 독립차원으로 재표현하기 위하여 사용하는 방법
 
-princomp()
+`princomp()`
+
+`predict()`
 
 ```{r}
 iris.p <- princomp(iris[,-5], cor=T)
+summary(iris.p)
+plot(iris.p, type='l')
 
+iris.pd <- predict(iris.p, iris[,-5])
+plot(iris.pd)
 ```
 
 
