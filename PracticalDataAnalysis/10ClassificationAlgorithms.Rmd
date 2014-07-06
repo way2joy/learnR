@@ -87,11 +87,51 @@ iris.na[is.na(iris.na$Sepal.Length),] # 하나의 열에 대해서만
 ```
 
 NA를 중앙값으로 대치한 예
+`centralImputation()`
 ```{r}
 library(DMwR)
 na.location <- !complete.cases(iris.na)
-iris.na.md <- centralImputation(iris.na[,-5])
+iris.na.md <- centralImputation(iris.na)
 # 확인
-iris.na.md[na.location,]
+iris.na.md[na.location,-5]
 ```
+
+kNN을 사용하여 k개 근접 이웃의 가중 평균으로 대치한 예
+가중치는 NA값이 있는 데이터와의 거리로부터 계산됨
+`knnImputation()` : scale() 자동 실행
+
+```{r}
+iris.na.knn <- knnImputation(iris.na)
+# 확인
+iris.na.knn[na.location,-5]
+```
+
+### 2.3 변수 선택(Feature Selection)
+
+주어진 데이터의 전부를 사용하기보다는 그 중 모델링에 가장 적합한 변수만 택하는 과정
+
++ Filter Method : 통계적 특성 기반
++ Wrapper Method : 모델링 반복 수행
++ Embeded method : 
+
+#### 0에 가까운 분산(Near Zero Variance)
+
+변수 선택의 가장 단순한 방법은 변수값의 분산을 보는 것. 
+
+분산이 작은 변수는 모델에 큰 영향을 주지 않는다. 
+
+`nearZeroVar(){caret}`
+
+```{r}
+library(caret)
+library(mlbench) ; data(Soybean)
+str(Soybean)
+
+nearZeroVar(Soybean, saveMetrics=T)     # saveMetrics=T : 분석결과 출력
+# 결과의 "nzv"는 0에 가까운 분산을 의미함. 따라서 이 값이 TRUE인 변수들을 제거할 수 있다.
+
+Soybean.rm.nzv <- Soybean[,-nearZeroVar(Soybean)]
+str(Soybean.rm.nzv)
+```
+
 
