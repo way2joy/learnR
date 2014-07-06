@@ -182,4 +182,14 @@ m <- rpart(Class~., data=BreastCancer)
 varImp(m)
 ```
 
+## 3. 모델 평가 방법
+
+### 3.1 평가 메트릭(metric)
+
+```{r}
+predicted <- c(1,0,0,1,1,1,0,0,0,1,1,1)
+actual    <- c(1,0,0,1,1,0,1,1,0,1,1,1)
+```
+
+
 
