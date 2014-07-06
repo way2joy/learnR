@@ -191,5 +191,11 @@ predicted <- c(1,0,0,1,1,1,0,0,0,1,1,1)
 actual    <- c(1,0,0,1,1,0,1,1,0,1,1,1)
 ```
 
+분할표(Contingency Table) 작성
+
+```{r}
+xtabs(~predicted+actural)
+```
+
 
 
