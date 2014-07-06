@@ -134,4 +134,6 @@ Soybean.rm.nzv <- Soybean[,-nearZeroVar(Soybean)]
 str(Soybean.rm.nzv)
 ```
 
+#### 상관계수(Correlation)
+
 
