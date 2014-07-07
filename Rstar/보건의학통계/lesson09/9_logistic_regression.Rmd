@@ -1,0 +1,43 @@
+---
+title: 로지스틱 회귀분석 실습
+output: html_document
+---
+
+자료입력 및 관찰
+
+```{r}
+birthdata <- read.csv("9_logistic_regression.csv")
+attach(birthdata)
+head(birthdata)
+```
+
+로지스틱 회귀분석, 전부입력
+
+```{r, echo=FALSE}
+resultall <- glm(low~age+lwt+factor(race)+smoke+ptl+ht+ui+ftv, family=binomial)
+summary(resultall)
+exp(coef(resultall))
+exp(confint(resultall))
+```
+
+로지스틱 회귀분석, 단계 선택법
+
+```{r}
+resultstep <- step(resultall, direction="both")
+summary(resultstep)
+exp(coef(resultstep))
+exp(confint(resultstep))
+```
+
+로지스틱 회귀분석 최종모형
+
+```{r}
+resultfinal <- glm(low~lwt+factor(race)+smoke+ht+ui, family=binomial)
+summary(resultfinal)
+exp(coef(resultfinal))
+exp(confint(resultfinal))
+```
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
