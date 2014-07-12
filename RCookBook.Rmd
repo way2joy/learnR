@@ -1,0 +1,26 @@
+Title
+====================================================
+
+2.9 Selecting Vector Elements
+
+```{r}
+# Select all elements greater than the median
+v[ v>median(v) ]
+
+# Select all elements in the lower and upper 5%
+v[ (v<quantile(v,0.05))|(v>quantile(v,0.95)) ]
+
+# Select all elements that exceed +- 2 standard deviatins from the mean
+v[ abs(v-mean(v)) > 2*sd(v) ]
+
+# Select all elements that are neither NA nor NULL
+v[ !is.na(v)&!is.null(v) ]
+```
+
+
+You can also embed plots, for example:
+
+```{r fig.width=7, fig.height=6}
+plot(cars)
+```
+
