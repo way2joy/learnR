@@ -95,3 +95,26 @@ dim(B) <- c(3,2)
 print(B)
 ```
 
+Array is general type of matrix
+
+```{r}
+D <- c(1:12)
+dim(D) <- c(2,3,2)
+print(D)
+```
+
+## 6. Data Transformation
+
+### 6.4 Applying a Function to Every Column
+
+```{r}
+# homogeneous only. (like vector, matrix)
+apply(iris, 2, class)  # force to make data conversion
+
+# heterogeneous available (like list, data.frame)
+lapply(iris, class)   # return to list
+sapply(iris, class)   # return to vector
+
+```
+
+lapply
