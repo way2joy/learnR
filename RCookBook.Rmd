@@ -142,10 +142,12 @@ mapply(func, vec1, vec2, ...)
 
 ```{r}
 myfunc <- function(a, b){
-  paste(a, b)
+  sum(a, b)
 }
 
-mapply(myfunc, iris[[5]], iris[[1]])
+mapply(myfunc, iris[[2]], iris[[1]])
+myfunc(iris[[2]], iris[[1]])
+iris[[2]] + iris[[1]]
 ```
 
 
