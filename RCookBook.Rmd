@@ -114,7 +114,5 @@ apply(iris, 2, class)  # force to make data conversion
 # heterogeneous available (like list, data.frame)
 lapply(iris, class)   # return to list
 sapply(iris, class)   # return to vector
-
 ```
 
-lapply
