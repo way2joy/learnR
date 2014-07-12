@@ -150,3 +150,28 @@ myfunc(iris[[2]], iris[[1]])
 iris[[2]] + iris[[1]]
 ```
 
+## 7. String and Dates
+
+### 7.1 Getting the Length of a String 
+
+```{r}
+nchar("Moe")
+length("Moe")
+```
+
+### 7.2 Concaternating String 
+
+```{r}
+paste("Everybody", "loves", "stats.")
+paste("Everybody", "loves", "stats.", sep="")
+
+names <- c("Moe", "Larry", "Curly")
+paste(names, "loves", "stats.")
+paste(names, "loves", "stats", collapse=", and ")
+```
+
+strsplit(string, delimiter)
+
+
+
+
