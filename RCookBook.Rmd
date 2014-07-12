@@ -150,5 +150,3 @@ myfunc(iris[[2]], iris[[1]])
 iris[[2]] + iris[[1]]
 ```
 
-
-
