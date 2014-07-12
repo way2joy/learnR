@@ -120,10 +120,11 @@ sapply(iris, class)   # return to vector
 
 ### 6.5 Applying a Function to Groups of Data
 
-tapply
+tapply(vector, factor, function)
 
 ```{r}
-tapply(iris$Sepal.Length, iris$Species, mean)
+# factor로 나누어진 vector의 value 다루기
+tapply(iris$Sepal.Length, iris$Species, length)
 ```
 
 
