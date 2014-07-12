@@ -19,3 +19,38 @@ v[ abs(v-mean(v)) > 2*sd(v) ]
 v[ !is.na(v)&!is.null(v) ]
 ```
 
+## 4.2 Printing Fewer Digits
+
+```{r}
+print(pi, digits=4)
+cat(format(pi, digits=4), "\n")
+
+a <- pnorm(-3:3) ; a
+print(a, digits=3)
+```
+
+## 4.3 Redirecting Output to a File
+
+redirect the output from R into a file instead of your console
+
+use `cat`
+```{r}
+cat("The result is", result, "\n", file="filename")
+```
+
+use `sink`
+```{r}
+sink("filename")
+print(result)
+sink()
+```
+
+use `sink` 
+```{r}
+sink("script_output.txt")
+source("script.R")
+sink()
+```
+
+
+
