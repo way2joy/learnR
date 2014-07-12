@@ -127,4 +127,12 @@ tapply(vector, factor, function)
 tapply(iris$Sepal.Length, iris$Species, length)
 ```
 
+### 6.6 Applying a Function to Groups of Rows
+
+by(data.frame, factor, function)
+
+```{r}
+by(iris[1:4], iris$Species, summary)    # return to list
+
+```
 
