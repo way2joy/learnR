@@ -1,7 +1,9 @@
-Title
+R Cook Book
 ====================================================
 
-2.9 Selecting Vector Elements
+Useful expression
+
+## 2.9 Selecting Vector Elements
 
 ```{r}
 # Select all elements greater than the median
@@ -15,12 +17,5 @@ v[ abs(v-mean(v)) > 2*sd(v) ]
 
 # Select all elements that are neither NA nor NULL
 v[ !is.na(v)&!is.null(v) ]
-```
-
-
-You can also embed plots, for example:
-
-```{r fig.width=7, fig.height=6}
-plot(cars)
 ```
 
