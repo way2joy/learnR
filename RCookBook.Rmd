@@ -136,3 +136,15 @@ by(iris[1:4], iris$Species, summary)    # return to list
 
 ```
 
+### 6.7 Applying a Function to Parallel Vectors or Lists
+
+mapply(func, vec1, vec2, ...)
+
+```{r}
+myfunc <- function(a, b){
+  paste(a, b)
+}
+
+mapply(myfunc, iris[[5]], iris[[1]])
+```
+
