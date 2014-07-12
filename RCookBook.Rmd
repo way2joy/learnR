@@ -107,6 +107,8 @@ print(D)
 
 ### 6.4 Applying a Function to Every Column
 
+apply, lapply and sapply
+
 ```{r}
 # homogeneous only. (like vector, matrix)
 apply(iris, 2, class)  # force to make data conversion
@@ -115,4 +117,13 @@ apply(iris, 2, class)  # force to make data conversion
 lapply(iris, class)   # return to list
 sapply(iris, class)   # return to vector
 ```
+
+### 6.5 Applying a Function to Groups of Data
+
+tapply
+
+```{r}
+tapply(iris$Sepal.Length, iris$Species, mean)
+```
+
 
