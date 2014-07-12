@@ -3,7 +3,9 @@ R Cook Book
 
 Useful expression
 
-## 2.9 Selecting Vector Elements
+## 2.
+
+### 2.9 Selecting Vector Elements
 
 ```{r}
 # Select all elements greater than the median
@@ -19,7 +21,11 @@ v[ abs(v-mean(v)) > 2*sd(v) ]
 v[ !is.na(v)&!is.null(v) ]
 ```
 
-## 4.2 Printing Fewer Digits
+## 3.
+
+## 4. 
+
+### 4.2 Printing Fewer Digits
 
 ```{r}
 print(pi, digits=4)
@@ -29,7 +35,7 @@ a <- pnorm(-3:3) ; a
 print(a, digits=3)
 ```
 
-## 4.3 Redirecting Output to a File
+### 4.3 Redirecting Output to a File
 
 redirect the output from R into a file instead of your console
 
@@ -52,5 +58,40 @@ source("script.R")
 sink()
 ```
 
+use `cat`
+```{r}
+con <- file("analysiReport.out", "w")
+cat(data, file=con)
+cat(result, file=con)
+cat(conclusion, file=con)
+close(con)
+```
 
+## 5. Data Structures
+
+Matrix : just a vector that has dimentions
+
+```{r}
+A <- 1:6
+dim(A) ; print(A)
+
+dim(A) <- c(2,3)
+print(A)
+
+dim(A) <- c(3,2)
+print(A)
+```
+
+Matrix can be creatied from a list
+
+```{r}
+B <- list(1,2,3,4,5,6)
+dim(B) ; print(B)
+
+dim(B) <- c(2,3)
+print(B)
+
+dim(B) <- c(3,2)
+print(B)
+```
 
