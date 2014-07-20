@@ -214,6 +214,7 @@ pop <- rnorm(100, mean=means, sd=1)
 sample(vec,n)
 
 ```{r}
-sample()
+sample(rnorm(100), 10)
 ```
+
 
