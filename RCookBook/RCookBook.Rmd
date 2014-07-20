@@ -174,10 +174,17 @@ strsplit(string, delimiter)
 
 ## 8. Probability
 
-### 8.1 Counting the Number of Combination
+### 8.1, 8.2 Combination
+
+`choose(n, k)` : counting the number of combinations 
+
+`combn(items, k)` : generating combinations
 
 ```{r}
 choose(50,3)    # how many ways can we select 3 items from 50 items?
+
+combn(1:5, 3)   # generating combinations
+choose(5,3)
 ```
 
 
