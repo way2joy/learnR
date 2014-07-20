@@ -206,7 +206,7 @@ rgamma(3, shape=2, rate=0.1)
 
 ```{r}
 means <- rnorm(100, mean=0, sd=0.2)   # 표본집단의 평균들
-pop <- rnorm(100, mean=means, sd=1)
+pop <- rnorm(100, mean=means, sd=1)    # 
 ```
 
 
