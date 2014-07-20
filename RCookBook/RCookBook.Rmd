@@ -172,6 +172,15 @@ paste(names, "loves", "stats", collapse=", and ")
 
 strsplit(string, delimiter)
 
+## 8. Probability
+
+### 8.1 Counting the Number of Combination
+
+```{r}
+choose(50,3)    # how many ways can we select 3 items from 50 items?
+```
+
+
 
 
 
