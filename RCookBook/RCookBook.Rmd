@@ -191,10 +191,22 @@ choose(5,3)
 
 ```{r}
 runif(3)    # generationg uniform random numbers
+runif(3, min=-3, max=3)
 
 rnorm(3)
+rnorm(3, mean=100, sd=15)
+
+rbinom(3, size=10, prob=0.5)
+rpois(3, lambda=10)
+rexp(3, rate=0.1)
+rgamma(3, shape=2, rate=0.1)
 ```
 
+응용
 
+```{r}
+means <- rnorm(100, mean=0, sd=0.2)   # 표본집단의 평균들
+pop <- rnorm(100, mean=means, sd=1)
+```
 
 
