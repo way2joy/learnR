@@ -211,8 +211,9 @@ pop <- rnorm(100, mean=means, sd=1)
 
 ###8.4 Generating a Random Sample
 
+sample(vec,n)
 
 ```{r}
-
+sample()
 ```
 
